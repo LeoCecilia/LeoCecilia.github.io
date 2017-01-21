@@ -6,15 +6,13 @@
     <entry>
       <title><![CDATA[FreeCodeCamp]]></title>
       <url>http://yoursite.com/2017/01/21/FreeCodeCamp/</url>
-      <content type="html"><![CDATA[<p>##No repeat please(196)</p>
-<ul>
+      <content type="html"><![CDATA[<h2 id="No-repeat-please-196"><a href="#No-repeat-please-196" class="headerlink" title="No repeat please(196)"></a>No repeat please(196)</h2><ul>
 <li>把一个字符串中的字符重新排列生成新的字符串</li>
 <li>返回新生成的字符串里<strong>没有</strong>连续重复字符的字符串个数</li>
 <li>连续重复只以<em>单</em>个字符为准</li>
 </ul>
 <h3 id="eg-aab-应该返回2，-因为总共有6种排列-aab-aab-aba-aba-baa-baa-，只有aba-aba合符标准"><a href="#eg-aab-应该返回2，-因为总共有6种排列-aab-aab-aba-aba-baa-baa-，只有aba-aba合符标准" class="headerlink" title="eg. aab 应该返回2， 因为总共有6种排列(aab,aab,aba,aba,baa,baa)，只有aba,aba合符标准"></a>eg. <code>aab</code> 应该返回2， 因为总共有6种排列(<code>aab</code>,<code>aab</code>,<code>aba</code>,<code>aba</code>,<code>baa</code>,<code>baa</code>)，只有<code>aba</code>,<code>aba</code>合符标准</h3><hr>
-<p>###分析</p>
-<ul>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
 <li><p>首先将该字符串转换成数组</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = str.split(<span class="string">''</span>);</div></pre></td></tr></table></figure>
 </li>
