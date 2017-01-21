@@ -84,19 +84,52 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="##No repeat please(196)
+
+把一个字符串中的字符重新排列生成新的字符串
+返回新生成的字符串里没有连续重复字符的字符串个数
+连续重复只以单个字符为准
+
+eg. aab 应该返回2， 因为总共有6种排列(aab,aab,aba,aba,baa,baa)，只有aba,aba合符标准
+###分析
+
+首先将该字符串转换成数组
+1var a = str.split(&apos;&apos;);
+
+运用全排列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/12/24/hello-world/index.html">
+<meta property="og:title" content="FreeCodeCamp">
+<meta property="og:url" content="http://yoursite.com/2017/01/21/FreeCodeCamp/index.html">
 <meta property="og:site_name" content="vivian blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-12-25T08:14:24.811Z">
+<meta property="og:description" content="##No repeat please(196)
+
+把一个字符串中的字符重新排列生成新的字符串
+返回新生成的字符串里没有连续重复字符的字符串个数
+连续重复只以单个字符为准
+
+eg. aab 应该返回2， 因为总共有6种排列(aab,aab,aba,aba,baa,baa)，只有aba,aba合符标准
+###分析
+
+首先将该字符串转换成数组
+1var a = str.split(&apos;&apos;);
+
+运用全排列">
+<meta property="og:updated_time" content="2017-01-21T12:46:36.042Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="FreeCodeCamp">
+<meta name="twitter:description" content="##No repeat please(196)
+
+把一个字符串中的字符重新排列生成新的字符串
+返回新生成的字符串里没有连续重复字符的字符串个数
+连续重复只以单个字符为准
+
+eg. aab 应该返回2， 因为总共有6种排列(aab,aab,aba,aba,baa,baa)，只有aba,aba合符标准
+###分析
+
+首先将该字符串转换成数组
+1var a = str.split(&apos;&apos;);
+
+运用全排列">
 
 
 
@@ -124,13 +157,13 @@ Quick">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/24/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/21/FreeCodeCamp/"/>
 
 
 
 
 
-  <title> Hello World | vivian blog </title>
+  <title> FreeCodeCamp | vivian blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +299,7 @@ Quick">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/24/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/21/FreeCodeCamp/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="vivian">
@@ -290,7 +323,7 @@ Quick">
             
             
               
-                Hello World
+                FreeCodeCamp
               
             
           </h1>
@@ -305,8 +338,8 @@ Quick">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-24T14:35:07+08:00">
-                2016-12-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-21T20:32:37+08:00">
+                2017-01-21
               </time>
             
 
@@ -341,15 +374,29 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>##No repeat please(196)</p>
+<ul>
+<li>把一个字符串中的字符重新排列生成新的字符串</li>
+<li>返回新生成的字符串里<strong>没有</strong>连续重复字符的字符串个数</li>
+<li>连续重复只以<em>单</em>个字符为准</li>
+</ul>
+<h3 id="eg-aab-应该返回2，-因为总共有6种排列-aab-aab-aba-aba-baa-baa-，只有aba-aba合符标准"><a href="#eg-aab-应该返回2，-因为总共有6种排列-aab-aab-aba-aba-baa-baa-，只有aba-aba合符标准" class="headerlink" title="eg. aab 应该返回2， 因为总共有6种排列(aab,aab,aba,aba,baa,baa)，只有aba,aba合符标准"></a>eg. <code>aab</code> 应该返回2， 因为总共有6种排列(<code>aab</code>,<code>aab</code>,<code>aba</code>,<code>aba</code>,<code>baa</code>,<code>baa</code>)，只有<code>aba</code>,<code>aba</code>合符标准</h3><hr>
+<p>###分析</p>
+<ul>
+<li><p>首先将该字符串转换成数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = str.split(<span class="string">''</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>运用全排列算法，来算出全排列的结果， 现在我们具体来分析如何实现该算法。<br>eg. <code>abc</code> 应该返回2，因为总共有6种排列(<code>bac</code>,<code>cba</code>,<code>acb</code>,<code>bca</code>,<code>cba</code>,<code>abc</code>)</p>
+<blockquote>
+<p><code>bac</code>, <code>cba</code> 都是 <code>abc</code> 的 <code>a</code>与后面两个字符替换得到的<br><code>acb</code> 是将 <code>abc</code> 第二个字符和第三个字符交换可得到<br><code>bca</code> 则是由 <code>bac</code> 的第二个和第三个字符交换得到<br>同理可知， <code>cab</code> 亦是由 <code>cba</code> 交换而来的</p>
+</blockquote>
+<p>  <strong>结论</strong>：因此可以知道全排列算法即是从第1个数开始，分别与后面的数进行交换的过程，其复杂度为O(n!)，用递归算法可以较轻易实现</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">generate</span>(<span class="params">start</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(start === arr.length<span class="number">-1</span>)</div><div class="line">	&#123;</div><div class="line">		permutation.push(arr.join(<span class="string">''</span>));</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = start;i &lt;= arr.length<span class="number">-1</span>;i++)	</div><div class="line">		&#123;	<span class="comment">//从下标为start的数开始，分别与它后面的数字交换</span></div><div class="line">			swap(start,i); </div><div class="line">			generate(start+<span class="number">1</span>);</div><div class="line">			swap(start,i); </div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">  &#125;</div><div class="line">  generate(<span class="number">0</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>其次运用 <a href="https://github.com/FreeCodeCamp/FreeCodeCamp/wiki/JS-Regex-Resources" target="_blank" rel="external">正则表达式</a> <code>/(.)\1+/g</code>来判断诸如<code>aab</code>类的字符串<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">permAlone</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> regex = <span class="regexp">/(.)\1+/g</span>,<span class="comment">//匹配重复字母，\1表示后面紧跟的字符</span></div><div class="line">      arr = str.split(<span class="string">''</span>),</div><div class="line">      permutation = [];</div><div class="line">  </div><div class="line">  <span class="keyword">if</span>(str.match(regex)!==<span class="literal">null</span>&amp;&amp;str.match(regex)[<span class="number">0</span>]===str)<span class="comment">//看是不是只有aaaa之类的单词</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> temp = arr[a];</div><div class="line">    arr[a] = arr[b];</div><div class="line">    arr[b] = temp;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">//堆全排列算法</span></div><div class="line">  <span class="comment">//https://en.wikipedia.org/wiki/Heap's_algorithm</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">generate</span>(<span class="params">start</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(start === arr.length<span class="number">-1</span>)</div><div class="line">	&#123;</div><div class="line">		permutation.push(arr.join(<span class="string">''</span>));</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">	&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = start;i &lt;= arr.length<span class="number">-1</span>;i++)	</div><div class="line">		&#123;	<span class="comment">//从下标为start的数开始，分别与它后面的数字交换</span></div><div class="line">			swap(start,i); </div><div class="line">			generate(start+<span class="number">1</span>);</div><div class="line">			swap(start,i); </div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  generate(<span class="number">0</span>);</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> filtered = permutation.filter(<span class="function"><span class="keyword">function</span>(<span class="params">string</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> !string.match(regex);</div><div class="line">  &#125;);</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> filtered.length;</div><div class="line">&#125;</div><div class="line"></div><div class="line">permAlone(<span class="string">'abcdefa'</span>);</div></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -376,15 +423,15 @@ Quick">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/12/25/how-to-use-markdown/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/25/how-to-use-markdown/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,7 +560,7 @@ Quick">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#eg-aab-应该返回2，-因为总共有6种排列-aab-aab-aba-aba-baa-baa-，只有aba-aba合符标准"><span class="nav-number">1.</span> <span class="nav-text">eg. aab 应该返回2， 因为总共有6种排列(aab,aab,aba,aba,baa,baa)，只有aba,aba合符标准</span></a></li></ol></div>
             
 
           </div>
