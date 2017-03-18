@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[Trip Of D3.js]]></title>
-      <url>http://leocecilia.github.io/blog/blog/2017/03/11/trip%20of%20d3.js/</url>
+      <url>http://leocecilia.github.io/blog/2017/03/11/trip%20of%20d3.js/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从freecodecamp中得知了d3.js,在<a href="d3js.org">官网</a>上看到了那么多高大上的例子，不禁想要多加了解它</p>
 <h2 id="d3-js介绍"><a href="#d3-js介绍" class="headerlink" title="d3.js介绍"></a>d3.js介绍</h2><ul>
 <li><p>D3.js是一套javaScript函数库，包含一整组操纵画图很好的辅助工具，还有很方便element操作模型</p>
@@ -131,7 +131,7 @@
     
     <entry>
       <title><![CDATA[currently thinking]]></title>
-      <url>http://leocecilia.github.io/blog/blog/2017/03/06/currently-thinking/</url>
+      <url>http://leocecilia.github.io/blog/2017/03/06/currently-thinking/</url>
       <content type="html"><![CDATA[<h2 id="场景1"><a href="#场景1" class="headerlink" title="场景1"></a>场景1</h2><p>我们宿舍开了一个小会，目的是为了让我们宿舍能够继续和睦相处。小A说我生活习惯有些随便，导致她东西的生命周期缩短</p>
 <h3 id="自述"><a href="#自述" class="headerlink" title="自述"></a>自述</h3><p>我确实以为有时候集体生活，有些资源是可以共用的，因此我便没有询问对方的意见，不问自取，此确实是我的不对。对方的处理让我觉得很是尴尬，并不是说人家冤枉了我什么的，也不是说我有错不认，而是她并没有事先跟我说清你我的矛盾，却先跟其他舍友说此事，然后说还开个小会。其他人都在不好意思地笑着。。。噢，对啊，原来她们竟是不好意思地笑着。是啊，小B和小C想必也早就不满我不问自取之恶习，而小D也最是反感这种恶习的。哪怕是最微末的事情，长期以来，也是很消磨人的意志的吧，只是碍于舍友情谊，不方便明说罢了。如此说来小A倒是成为了代表者来开会说明她们对我的不满啊，而我竟误以为她。。。原来根源是出于己身啊！</p>
 <h2 id="场景2"><a href="#场景2" class="headerlink" title="场景2"></a>场景2</h2><p>我男友召集他的初中同学来华农游玩，并且也让他们看一下他们的大嫂（然而我心理是不承认的，明明只是女朋友嘛！！！总觉得叫我大嫂会将我说的很老的感觉）。他让我做他们的导游，可是在那一刻我竟不知道该说啥，内心也有一些局促不安，后来他还是承接了自己的话题。。。 到后来，大多数情况下也是他跟他们聊天，游玩结束之后，他问我为什么那么不自信呢，是因为不熟悉嘛</p>
@@ -146,7 +146,7 @@
     
     <entry>
       <title><![CDATA[市井讲价之心理拉锯战]]></title>
-      <url>http://leocecilia.github.io/blog/blog/2017/03/04/learn-of-city/</url>
+      <url>http://leocecilia.github.io/blog/2017/03/04/learn-of-city/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之所以会发出这篇文章，是由于昨天与男友买衣服所收到的启发</p>
 <hr>
 <h3 id="场景1"><a href="#场景1" class="headerlink" title="场景1"></a>场景1</h3><p>我们进入了一家装饰风格略显 <strong>拘束</strong>的小店中，略微询问了下价格，价格倒是便宜，摸上去材质却也是一般，想来其货色是较下层等次，拿了好几件衣服试穿，或许是因为我们本身比较旺场，店里客人接踵而来，于是我也不好意思继续占着更衣室，便退了出来，当我想要再试另外一件衣服之前，老板娘却<strong>黑着脸</strong>说，不用再试了，比比就知道好不好看啦。然后我们便甚为不爽，本想多买几件，现在居然还赶起人来了。最终不还是只有我们买下来了。</p>
@@ -169,13 +169,13 @@
     
     <entry>
       <title><![CDATA[json和jsonp学习笔记]]></title>
-      <url>http://leocecilia.github.io/blog/blog/2017/03/04/json%20diff%20jsonp/</url>
+      <url>http://leocecilia.github.io/blog/2017/03/04/json%20diff%20jsonp/</url>
       <content type="html"><![CDATA[<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2>]]></content>
     </entry>
     
     <entry>
       <title><![CDATA[React学习之旅]]></title>
-      <url>http://leocecilia.github.io/blog/blog/2017/03/02/learn-of-React/</url>
+      <url>http://leocecilia.github.io/blog/2017/03/02/learn-of-React/</url>
       <content type="html"><![CDATA[<h2 id="React介绍"><a href="#React介绍" class="headerlink" title="React介绍"></a>React介绍</h2><h3 id="认识误区"><a href="#认识误区" class="headerlink" title="认识误区"></a>认识误区</h3><ul>
 <li><p>React不是完整的MVC框架，最多只是MVC中的V(view)，甚至React本身都不认可MVC开发模式</p>
 </li>
@@ -226,7 +226,7 @@
     
     <entry>
       <title><![CDATA[build the game of life]]></title>
-      <url>http://leocecilia.github.io/blog/blog/2017/03/02/build-the-game-of-life/</url>
+      <url>http://leocecilia.github.io/blog/2017/03/02/build-the-game-of-life/</url>
       <content type="html"><![CDATA[<h2 id="build-the-game-of-life-204"><a href="#build-the-game-of-life-204" class="headerlink" title="build the game of life(204)"></a><a href="https://www.freecodecamp.com/challenges/build-the-game-of-life" target="_blank" rel="external">build the game of life</a>(204)</h2><h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a href="https://en.wikipedia.org/wiki/The_Game_of_Life" target="_blank" rel="external">game of life</a>(英文版)<br><a href="https://zh.wikipedia.org/zh-hans/%E5%BA%B7%E5%A8%81%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F" target="_blank" rel="external">康威生命游戏</a>(中文版)</p>
 <hr>
 <h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><ul>
@@ -271,7 +271,7 @@
     
     <entry>
       <title><![CDATA[FreeCodeCamp]]></title>
-      <url>http://leocecilia.github.io/blog/blog/2017/01/21/FreeCodeCamp/</url>
+      <url>http://leocecilia.github.io/blog/2017/01/21/FreeCodeCamp/</url>
       <content type="html"><![CDATA[<h2 id="No-repeat-please-196"><a href="#No-repeat-please-196" class="headerlink" title="No repeat please(196)"></a><a href="https://www.freecodecamp.com/challenges/no-repeats-please" target="_blank" rel="external">No repeat please</a>(196)</h2><ul>
 <li>把一个字符串中的字符重新排列生成新的字符串</li>
 <li>返回新生成的字符串里<strong>没有</strong>连续重复字符的字符串个数</li>
@@ -290,7 +290,7 @@
     
     <entry>
       <title></title>
-      <url>http://leocecilia.github.io/blog/blog/2016/12/25/how-to-use-markdown/</url>
+      <url>http://leocecilia.github.io/blog/2016/12/25/how-to-use-markdown/</url>
       <content type="html"><![CDATA[<h1 id="Cmd-Markdown-简明语法手册"><a href="#Cmd-Markdown-简明语法手册" class="headerlink" title="Cmd Markdown 简明语法手册"></a>Cmd Markdown 简明语法手册</h1><p>标签： Cmd-Markdown</p>
 <hr>
 <h3 id="1-斜体和粗体"><a href="#1-斜体和粗体" class="headerlink" title="1. 斜体和粗体"></a>1. 斜体和粗体</h3><p>使用 <em> 和 *</em> 表示斜体和粗体。</p>
@@ -454,7 +454,7 @@
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>http://leocecilia.github.io/blog/blog/2016/12/24/hello-world/</url>
+      <url>http://leocecilia.github.io/blog/2016/12/24/hello-world/</url>
       <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
