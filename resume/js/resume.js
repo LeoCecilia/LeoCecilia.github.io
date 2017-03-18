@@ -107,4 +107,9 @@ $('document').ready(function() {
     
   //高亮top nav
   $('body').scrollspy({target: '#navbar'});
+
+  //使用触屏来触发翻转动作
+  $('.flip-container').on('touchstart',function() {
+    $(this).toggleClass('hover');
+  });
 });

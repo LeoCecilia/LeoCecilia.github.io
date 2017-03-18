@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="css3," />
 
 
 
@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="前言：">
+<meta name="description" content="前言网上有很多关于画面翻转的教程，现在转载一篇个人认为比较好的做法
+HTML代码实现正反面效果的HTML代码，估计你想到该是这样的
+12345678910&amp;lt;div class=&quot;flip-container&quot; ontouchstart=&quot;this.classList.toggle(&apos;hover&apos;);&quot;&amp;gt;	&amp;lt;div class=&quot;flipper&quot;&amp;gt;		&amp;lt;div clas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="json和jsonp学习笔记">
-<meta property="og:url" content="https://leocecilia.github.io/2017/03/04/json diff jsonp/index.html">
+<meta property="og:title" content="画面翻转">
+<meta property="og:url" content="https://leocecilia.github.io/2017/03/18/turn-over-effect/index.html">
 <meta property="og:site_name" content="vivian blog">
-<meta property="og:description" content="前言：">
-<meta property="og:updated_time" content="2017-03-04T03:29:13.814Z">
+<meta property="og:description" content="前言网上有很多关于画面翻转的教程，现在转载一篇个人认为比较好的做法
+HTML代码实现正反面效果的HTML代码，估计你想到该是这样的
+12345678910&amp;lt;div class=&quot;flip-container&quot; ontouchstart=&quot;this.classList.toggle(&apos;hover&apos;);&quot;&amp;gt;	&amp;lt;div class=&quot;flipper&quot;&amp;gt;		&amp;lt;div clas">
+<meta property="og:updated_time" content="2017-03-18T16:14:49.917Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="json和jsonp学习笔记">
-<meta name="twitter:description" content="前言：">
+<meta name="twitter:title" content="画面翻转">
+<meta name="twitter:description" content="前言网上有很多关于画面翻转的教程，现在转载一篇个人认为比较好的做法
+HTML代码实现正反面效果的HTML代码，估计你想到该是这样的
+12345678910&amp;lt;div class=&quot;flip-container&quot; ontouchstart=&quot;this.classList.toggle(&apos;hover&apos;);&quot;&amp;gt;	&amp;lt;div class=&quot;flipper&quot;&amp;gt;		&amp;lt;div clas">
 
 
 
@@ -121,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://leocecilia.github.io/2017/03/04/json diff jsonp/"/>
+  <link rel="canonical" href="https://leocecilia.github.io/2017/03/18/turn-over-effect/"/>
 
 
 
 
 
-  <title> json和jsonp学习笔记 | vivian blog </title>
+  <title> 画面翻转 | vivian blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +279,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/03/04/json diff jsonp/">
+  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/03/18/turn-over-effect/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="vivian">
@@ -297,7 +303,7 @@
             
             
               
-                json和jsonp学习笔记
+                画面翻转
               
             
           </h1>
@@ -312,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-04T11:29:13+08:00">
-                2017-03-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-18T21:30:02+08:00">
+                2017-03-18
               </time>
             
 
@@ -348,7 +354,27 @@
       
 
       
-        <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>网上有很多关于画面翻转的教程，现在转载一篇个人认为比较好的做法</p>
+<h2 id="HTML代码"><a href="#HTML代码" class="headerlink" title="HTML代码"></a>HTML代码</h2><p>实现正反面效果的HTML代码，估计你想到该是这样的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flip-container"</span> <span class="attr">ontouchstart</span>=<span class="string">"this.classList.toggle('hover');"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"flipper"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"front"</span>&gt;</span></div><div class="line">			<span class="comment">&lt;!-- 前面内容 --&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"back"</span>&gt;</span></div><div class="line">			<span class="comment">&lt;!-- 背面内容 --&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>正如你所想，有两个容器，分别存放卡片‘前面’和‘后面’，通过css，我们会指定这两个容器元素自己的这样。<strong>注意</strong><code>ontouchstart</code>这段js，能让你使用触屏来触发翻转动作，显然应该将这段代码单独提取，让javaScript代码放到一起</p>
+<h2 id="css代码"><a href="#css代码" class="headerlink" title="css代码"></a>css代码</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 翻转动画 */</span></div><div class="line"><span class="selector-class">.flip-container</span>&#123;</div><div class="line">  <span class="attribute">-webkit-perspective</span>: <span class="number">1000</span>;</div><div class="line">  <span class="attribute">perspective</span>: <span class="number">1000</span>;<span class="comment">/*透视属性*/</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.flip-container</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.flipper</span>, <span class="selector-class">.flip-container</span><span class="selector-class">.hover</span> <span class="selector-class">.flipper</span>&#123;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(180deg);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.flip-container</span>, <span class="selector-class">.front</span>, <span class="selector-class">.back</span>&#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">95px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">95px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* flip speed goes here */</span></div><div class="line"><span class="selector-class">.flipper</span> &#123;</div><div class="line">  <span class="attribute">transition</span>: <span class="number">0.6s</span>;</div><div class="line">  <span class="attribute">transform-style</span>: preserve-<span class="number">3</span>d;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* hide back of pane during swap */</span></div><div class="line"><span class="selector-class">.front</span>,<span class="selector-class">.back</span>&#123;</div><div class="line">  <span class="attribute">backface-visibility</span>: hidden;<span class="comment">/* 背面可视性 */</span></div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">background</span>: <span class="number">#eee</span>;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">justify-content</span>: center;</div><div class="line">  <span class="attribute">align-items</span>: center;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* placed above back */</span></div><div class="line"><span class="selector-class">.front</span> &#123;</div><div class="line">  <span class="attribute">z-index</span>: <span class="number">2</span>;</div><div class="line">  <span class="attribute">box-shadow</span>: <span class="number">8px</span> <span class="number">10px</span> <span class="number">10px</span> -<span class="number">9px</span> <span class="built_in">rgba</span>(0,0,0,0.4);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* back, initially hidden pane */</span></div><div class="line"><span class="selector-class">.back</span> &#123;</div><div class="line">  <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(180deg);</div><div class="line">  <span class="attribute">box-shadow</span>: -<span class="number">8px</span> <span class="number">10px</span> <span class="number">10px</span> -<span class="number">9px</span> <span class="built_in">rgba</span>(0,0,0,0.4);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ul>
+<li>在<code>flip-container</code>容器元素上设置整个动画区域的透视<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/perspective" target="_blank" rel="external">perspective</a>属性</li>
+<li>当<code>flip-container</code>元素遇到鼠标悬停事件时，<code>flipper</code>旋转180deg，这里是控制旋转速度的地方，若旋转值设为-180deg，逆方向旋转</li>
+<li>表示卡片正反面的元素都要绝对定位，这样他们才能在相同的位置相互遮挡，他们的背面可视性<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility" target="_blank" rel="external">backface-visibility</a>设置为隐藏，这样每个卡片的背面在翻转时都看不见的</li>
+<li>将卡片的正面设置为比一个背面要高的<code>z-index</code>的值，保证卡片的正面在最上面</li>
+<li>将背面卡片旋转180deg，这样能让她扮演背面的角色</li>
+</ul>
+<h2 id="Ana-Tudor’s-quote"><a href="#Ana-Tudor’s-quote" class="headerlink" title="Ana Tudor’s quote"></a>Ana Tudor’s quote</h2><blockquote>
+<p>对卡片元素的<a href="https://drafts.csswg.org/css-transforms/#transform-style-property" target="_blank" rel="external">某些属性设置一些特定的值</a>(例如)(like overflow: hidden)会导致其子元素丧失3D变换功能。我认可他的观点，因为正是在本文的例子中我正好遇到了overflow: hidden相关的麻烦，它导致了3D变换子元素全都出现在了同一个平面上，有几个是被旋转了180度。</p>
+</blockquote>
+<h2 id="触发css翻转"><a href="#触发css翻转" class="headerlink" title="触发css翻转"></a>触发css翻转</h2><p>若你喜欢用javaScript来触发翻转动作，下面这个简单的css样式能帮到你</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.flip-container</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.flipper</span>, <span class="selector-class">.flip-container</span><span class="selector-class">.hover</span> <span class="selector-class">.flipper</span>, <span class="selector-class">.flip-container</span><span class="selector-class">.flip</span> <span class="selector-class">.flipper</span> &#123;</div><div class="line">	<span class="attribute">transform</span>: <span class="built_in">rotateY</span>(180deg);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用javascript给容器元素添加这个css <code>flip</code>类就能触发卡片翻转，不需要用户系统鼠标在上面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">"#myCard"</span>).classList.toggle(<span class="string">"flip"</span>);</div></pre></td></tr></table></figure>
+<p>资料:<a href="http://www.webhek.com/post/css-flip.html" target="_blank" rel="external">3d翻转效果</a></p>
+
       
     </div>
 
@@ -369,13 +395,19 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/css3/" rel="tag"># css3</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/02/learn-of-React/" rel="next" title="React学习之旅">
-                <i class="fa fa-chevron-left"></i> React学习之旅
+              <a href="/2017/03/18/3dtagCloud/" rel="next" title="3dtagCloud">
+                <i class="fa fa-chevron-left"></i> 3dtagCloud
               </a>
             
           </div>
@@ -383,10 +415,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/04/learn-of-city/" rel="prev" title="市井讲价之心理拉锯战">
-                市井讲价之心理拉锯战 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -540,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言："><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML代码"><span class="nav-number">2.</span> <span class="nav-text">HTML代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css代码"><span class="nav-number">3.</span> <span class="nav-text">css代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">4.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ana-Tudor’s-quote"><span class="nav-number">5.</span> <span class="nav-text">Ana Tudor’s quote</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发css翻转"><span class="nav-number">6.</span> <span class="nav-text">触发css翻转</span></a></li></ol></div>
             
 
           </div>

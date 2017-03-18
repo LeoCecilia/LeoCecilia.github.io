@@ -109,7 +109,7 @@ sinθ与cosθ的值域为[-1,1]（很重要）
 
 123x = r * sinθ *">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Spherical_with_grid.svg/300px-Spherical_with_grid.svg.png">
-<meta property="og:updated_time" content="2017-03-18T13:20:53.067Z">
+<meta property="og:updated_time" content="2017-03-18T15:29:20.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3dtagCloud">
 <meta name="twitter:description" content="前言最近准备要找实习了，然后就想着要做个漂漂亮亮的简历。想起ife项目中的标签云，于是便准备做一个3d的标签云效果
@@ -403,7 +403,10 @@ sinθ与cosθ的值域为[-1,1]（很重要）
 <h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>先前已经说明了思路，现在就直接post上代码吧</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">rotateX</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">let</span> cos = <span class="built_in">Math</span>.cos(angleX),</div><div class="line">        sin = <span class="built_in">Math</span>.sin(angleX);</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;tags.length;i++)&#123;</div><div class="line">      	<span class="keyword">let</span> y = tags[i].y * cos - tags[i].z * sin,</div><div class="line">          z = tags[i].z * cos + tags[i].y * sin;</div><div class="line">        tags[i].y = y;</div><div class="line">        tags[i].z = z;</div><div class="line">      &#125;        </div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
 <p>其中angleX和angleY是旋转角速度的，可按需求设置，<strong>注意</strong> 在单位时间内<code>v=w*r</code>，且旋转360度跟没旋转的效果一样。</p>
+<h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">tag.prototype = &#123;</div><div class="line">      <span class="attr">move</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> scale = length / (length - <span class="keyword">this</span>.z),</div><div class="line">          alpha = (<span class="keyword">this</span>.z + R) / (<span class="number">2</span> * R),</div><div class="line">          ele = <span class="keyword">this</span>.ele;</div><div class="line">        ele.style.fontSize = <span class="number">15</span> * scale + <span class="string">"px"</span>;</div><div class="line">        ele.style.opacity = alpha + <span class="number">0.5</span>;</div><div class="line">        ele.style.zIndex = <span class="built_in">parseInt</span>(scale * <span class="number">100</span>);</div><div class="line">        <span class="comment">// 原点是 (cloud.offsetWidth/2, cloud.offsetHeight/2)</span></div><div class="line">        ele.style.left = <span class="keyword">this</span>.x + board.offsetWidth / <span class="number">2</span> - ele.offsetWidth / <span class="number">2</span> + <span class="string">"px"</span>;</div><div class="line">        ele.style.top = <span class="keyword">this</span>.y + board.offsetHeight / <span class="number">2</span> - ele.offsetHeight / <span class="number">2</span> + <span class="string">"px"</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<p>scale,alpha都是取关于z坐标递增的函数，用于设置<code>font-size</code>，<code>opacity</code>与<code>z-index</code>为了能够更好地形成视觉差(3d效果)，可按需设置！</p>
 <p><a href="https://leocecilia.github.io/resume/">预览</a></p>
+<p>参考链接 <a href="http://www.cnblogs.com/axes/p/3501424.html" target="_blank" rel="external">3dtagCloud</a></p>
 
       
     </div>
@@ -449,6 +452,10 @@ sinθ与cosθ的值域为[-1,1]（很重要）
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/18/turn-over-effect/" rel="prev" title="画面翻转">
+                画面翻转 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -518,7 +525,7 @@ sinθ与cosθ的值域为[-1,1]（很重要）
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -602,7 +609,7 @@ sinθ与cosθ的值域为[-1,1]（很重要）
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体思路"><span class="nav-number">2.</span> <span class="nav-text">总体思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要概念"><span class="nav-number">2.1.</span> <span class="nav-text">重要概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置坐标"><span class="nav-number">3.</span> <span class="nav-text">设置坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转"><span class="nav-number">4.</span> <span class="nav-text">旋转</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体思路"><span class="nav-number">2.</span> <span class="nav-text">总体思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要概念"><span class="nav-number">2.1.</span> <span class="nav-text">重要概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置坐标"><span class="nav-number">3.</span> <span class="nav-text">设置坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转"><span class="nav-number">4.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动"><span class="nav-number">5.</span> <span class="nav-text">移动</span></a></li></ol></div>
             
 
           </div>
