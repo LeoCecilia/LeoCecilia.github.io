@@ -46,8 +46,8 @@
 <ul>
 <li>旋转公式</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x1 = cosθ * x - sinθ * y;<span class="comment">//(x,y,z)为旋转前的坐标，(x1,y1,z1)为旋转后的坐标</span></div><div class="line">y1 = cosθ * y - sinθ * x;</div></pre></td></tr></table></figure>
-<p>球绕某一轴旋转可以抽象成圆绕圆心旋转!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">c = cosβ * x - sinβ * y;<span class="comment">//(x,y,z)为旋转前的坐标，(c,d,z1)为旋转后的坐标</span></div><div class="line">d = cosβ * y - sinβ * x;</div></pre></td></tr></table></figure>
+<p><img src="http://pic002.cnblogs.com/img/ywxgod/201008/2010080600581929.jpg" alt="原理"><br>球绕某一轴旋转可以抽象成圆绕圆心旋转!<br>资料：<a href="http://www.cnblogs.com/ywxgod/archive/2010/08/06/1793609.html" target="_blank" rel="external">坐标旋转公式推导</a></p>
 <h2 id="设置坐标"><a href="#设置坐标" class="headerlink" title="设置坐标"></a>设置坐标</h2><p>设置坐标是相对较难的一步，因为我们要将标签平均分布在球面上，藉此，引用一下大神的式子</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">θ = arccos(((<span class="number">2</span> * i) - <span class="number">1</span>) / len - <span class="number">1</span>); </div><div class="line">Φ = θ * sqrt(len * π);</div></pre></td></tr></table></figure>
 <blockquote>

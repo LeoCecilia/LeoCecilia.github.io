@@ -5,7 +5,7 @@ $('document').ready(function() {
     const board = document.getElementById('Skills'),
       R = 160, // 半径
       baseAngle = Math.PI / 360, // 单位角度, Math.PI / 360 * x  应该避免x是180的倍数，此时正好是半圈或者一圈 
-      screenW = document.body.scrollWidth,//real dimension
+      screenW = document.body.scrollWidth, //real dimension
       screenH = document.body.scrollHeight,
       length = R * 1.5; // 球心距离屏幕的z轴距离,应该大于R
 
@@ -98,18 +98,51 @@ $('document').ready(function() {
     });
   }
   tagCloud();
-  
+
   //动态置顶
-  $('#ScrollTop').on('click',function(e) {
+  $('#ScrollTop').on('click', function(e) {
     e.preventDefault();
-    $(document.body).animate({scrollTop: 0},800);
+    $(document.body).animate({
+      scrollTop: 0
+    }, 800);
   });
-    
+
   //高亮top nav
-  $('body').scrollspy({target: '#navbar'});
+  $('body').scrollspy({
+    target: '#navbar'
+  });
 
   //使用触屏来触发翻转动作
-  $('.flip-container').on('touchstart',function() {
+  $('.flip-container').on('touchstart', function() {
     $(this).toggleClass('hover');
   });
+
+  var flag = 0;
+  //不明白为甚么width会无限递增
+  //进度条动画
+  //webkit use body for keeping track of scrolling，document.documentElement.scrollTop always returns 0 on chrome.
+  //so maybe we should remove the body's css(width:100%),to see if there is sth. different
+  window.onscroll = function() {
+
+    var top = document.getElementById('Skill').getBoundingClientRect().top;
+    if (!flag) { //只能有一次机会
+      var barList = $('.progress-bar');
+
+      if (top <= 0) { //outerHeight()[jquery] === offsetHeight[js]
+        for (var i = 0; i < barList.length; i++) {
+          flag = 1;
+          //barList[i]是一个DOM，故要使用$(barList[i])返回该jquery对象
+          var Width = $(barList[i]).attr('aria-valuenow') + '%';
+          $(barList[i]).animate({
+            width: Width
+          }, 750);
+        }
+      }
+    }
+
+    var Top = document.getElementById('Contact').getBoundingClientRect().top;
+    if(Top<=0){
+      $('.flip-container').toggleClass('flip');
+    }
+  };
 });
