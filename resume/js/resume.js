@@ -117,7 +117,8 @@ $('document').ready(function() {
     $(this).toggleClass('hover');
   });
 
-  var flag = 0;
+  var flag = 0,
+    handle = true;//handle权柄，控制是否执行动画
   //不明白为甚么width会无限递增
   //进度条动画
   //webkit use body for keeping track of scrolling，document.documentElement.scrollTop always returns 0 on chrome.
@@ -125,7 +126,8 @@ $('document').ready(function() {
   window.onscroll = function() {
 
     var top = document.getElementById('Skill').getBoundingClientRect().top;
-    if (!flag) { //只能有一次机会
+    if (!flag) {//只有一次机会
+
       var barList = $('.progress-bar');
 
       if (top <= 0) { //outerHeight()[jquery] === offsetHeight[js]
@@ -141,8 +143,11 @@ $('document').ready(function() {
     }
 
     var Top = document.getElementById('Contact').getBoundingClientRect().top;
-    if(Top<=0){
+    if (Top <= 0 && handle) {
+      handle = false;
       $('.flip-container').toggleClass('flip');
+    } else if (Top > 0) {
+      handle = true;
     }
   };
 });
