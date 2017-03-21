@@ -5,7 +5,7 @@ $('document').ready(function() {
     const board = document.getElementById('Skills'),
       R = 160, // 半径
       baseAngle = Math.PI / 360, // 单位角度, Math.PI / 360 * x  应该避免x是180的倍数，此时正好是半圈或者一圈 
-      screenW = document.body.scrollWidth, //real dimension
+      screenW = document.body.scrollWidth, //DOM real dimension
       screenH = document.body.scrollHeight,
       length = R * 1.5; // 球心距离屏幕的z轴距离,应该大于R
 
@@ -75,7 +75,7 @@ $('document').ready(function() {
         sin = Math.sin(angleY);
       tags.forEach(function(tag) {
         let x = tag.x * cos - tag.z * sin,
-          z = tag.z * cos + tag.x * sin;
+            z = tag.z * cos + tag.x * sin;
         tag.x = x;
         tag.z = z;
       })
@@ -93,6 +93,7 @@ $('document').ready(function() {
     init();
     board.addEventListener("mousemove", function(e) {
       // 横向控制 y 轴旋转，纵向控制 x 轴旋转
+      // clientX--当鼠标移动触发mousemove事件，该事件的clientX便是board的水平坐标
       angleY = 2 * (e.clientX / screenW - 0.5) * speed * baseAngle; // 越靠近中心，速度越小，中心两侧方向相反
       angleX = 2 * (e.clientY / screenH - 0.5) * speed * baseAngle;
     });
