@@ -4,13 +4,89 @@
   
     
     <entry>
+      <title><![CDATA[jquery事件委托方法]]></title>
+      <url>https://leocecilia.github.io/2017/04/13/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些天做了个点赞的效果，那时候没有用到事件委托的方法，想来相比起用事件委托方法，性能锐减，所以现在记录一下jquery中不同的事件绑定，触发，解绑的方法以及用途</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>事件代理是指将事件绑定到父级元素中，然后等待事件通过DOM冒泡到该元素再执行，事件侦听中有事件冒泡和事件捕获两种方法，而jquery中通过事件冒泡方式来实现事件代理，分别有<code>bind()</code>,<code>live()</code>,’delegate()’,’on(‘click’function)’方法来实现事件的绑定</p>
+<ul>
+<li>事件冒泡：从发生事件的元素向其祖先元素冒泡</li>
+<li>事件捕获：事件在DOM中寻找子元素</li>
+</ul>
+<hr>
+<p>现在介绍一下事件绑定有那些方法</p>
+<h2 id="最普通的事件绑定click"><a href="#最普通的事件绑定click" class="headerlink" title="最普通的事件绑定click()"></a>最普通的事件绑定<code>click()</code></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#div1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"点击后触发"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>不提供解绑定方法，且要每个元素逐一绑定</p>
+<h2 id="可解绑定的’on-‘click’-function-’"><a href="#可解绑定的’on-‘click’-function-’" class="headerlink" title="可解绑定的’on(‘click’,function)’"></a>可解绑定的’on(‘click’,function)’</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#div1"</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"点击后触发"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>可使用<code>$(&#39;#div1&#39;).off(&#39;click&#39;);</code>解除绑定</p>
+<h2 id="bind-方法-使用冒泡的形式"><a href="#bind-方法-使用冒泡的形式" class="headerlink" title="bind()方法(使用冒泡的形式)"></a><code>bind()方法</code>(使用冒泡的形式)</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#div1"</span>).bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span> <span class="title">consoleMe</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"点击后触发"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>可使用<code>unbind()</code>解除绑定<br>注意：<code>bind()</code>仅适用于为DOM中<strong>已经存在</strong>的元素绑定事件处理函数，<strong>动态生成</strong>的DOM元素，则不起作用<br>eg:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   	$(<span class="string">'.box'</span>).bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       	$(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container'</span>);        </div><div class="line">   	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>运行结果，单击第一个链接，会追加元素，但是除了第一个链接，其余都<strong>没有</strong>被绑定<code>click</code>事件</p>
+<h2 id="live"><a href="#live" class="headerlink" title="live()"></a><code>live()</code></h2><p><code>live()</code>在jquery1.9以后已被丢弃，但现在仍记录一下其用法<br><code>live()</code>与<code>bind()</code>的最大区别<strong>在于<code>live()</code>不仅作用于已经存在的DOM元素，还作用于将来动态生成的元素</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   	$(<span class="string">'.box'</span>).live(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       	$(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container'</span>);        </div><div class="line">   	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>注意<code>live()</code>使用了<strong>事件委托</strong>的方法，但是它有所下几个缺点： </p>
+<ol>
+<li><code>$()</code>函数会找到当前页面的所有.box元素并创建jquery对象，但在确认事件明白时却不用这个.box元素的组合，而是使用选择符表达式与<code>event.target</code>或其祖先元素进行比较，所以生成jquery对象会导致不必要的开销</li>
+<li><code>live()</code>默认把事件绑定到<code>$(document)</code>元素，如果DOM嵌套很深，事件冒泡通过大量祖先元素会导致性能缺失</li>
+<li>只有<code>$(&#39;.container .box&#39;)</code>才能使用<code>live()</code>,<code>$(&#39;.container&#39;).find(&#39;.box&#39;)</code>不行。<br>hack手段，早委托方式，其必须在head元素中进行加载，放在尾部则不管用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">	$(<span class="string">"#info_table td"</span>).live(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;/显示更多信息/&#125;);</div><div class="line">&#125;)(jQuery);<span class="comment">//jQuery对象</span></div></pre></td></tr></table></figure>
+<h2 id="delegate-是比较强大的方法"><a href="#delegate-是比较强大的方法" class="headerlink" title="delegate()是比较强大的方法"></a><code>delegate()</code>是比较强大的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.container'</span>).delegate(<span class="string">'.box'</span>,<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container:first'</span>);<span class="comment">//若没有涉及到数值的改变，则可以这般写，否则的话，其便会共用一个作用域，</span></div><div class="line">      <span class="comment">//解决方法有两个，一个是创建闭包，另一个是通过绑定一个Id选择器来获取该元素，并进行事件委托</span></div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+<p><code>delegate()</code>使用了<strong>事件委托</strong>的方法，其根元素是具体绑定的元素，由此看来，使用<code>delegate()</code>要比<code>live()</code>效率更高。</p>
+<p>提示：使用事件委托时，如果注册到目标元素上的其他事件处理程序使用.stopPropagation()阻止了事件传播，那么事件委托就会<strong>失效</strong>。</p>
+<h2 id="on-39-click-39-39-box-39-function-是比较新的方法"><a href="#on-39-click-39-39-box-39-function-是比较新的方法" class="headerlink" title="on(&#39;click&#39;,&#39;.box&#39;,function)是比较新的方法"></a><code>on(&#39;click&#39;,&#39;.box&#39;,function)</code>是比较新的方法</h2>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Repeated Substring Pattern]]></title>
+      <url>https://leocecilia.github.io/2017/04/10/Repeated%20Substring%20Pattern/</url>
+      <content type="html"><![CDATA[<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p><a href="https://leetcode.com/problems/repeated-substring-pattern/#/description" target="_blank" rel="external">需求链接</a></p>
+<p>Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>问题给了我们一个字符串，问能否拆成n个重复的子串。因此既然能拆分，那么每个子串的长度不能大于原字串长度的一半，那么我们可以从源字符串长度的一半遍历到1，如果当前长度能被总长度整除，说明可以分成若干个字符串，我们将这些子字符串拼接起来看跟原字符串是否相等。 如果拆完了都不相等，返回false。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> repeatedSubstringPattern = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> len = s.length;</div><div class="line">    <span class="keyword">if</span>(s.length===<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="built_in">Math</span>.ceil(len/<span class="number">2</span>);i&gt;=<span class="number">1</span>;i--) &#123;<span class="comment">//至少得两个元素，才能看看是不是重复</span></div><div class="line">        <span class="keyword">if</span>(len%i===<span class="number">0</span>) &#123;</div><div class="line">            <span class="comment">//如果能被整除，说明能分成若干个字符串，然后将这若干字符串拼接起来后的字符串，跟源字符串相等的话，那就说明相等，否则不等</span></div><div class="line">            <span class="keyword">var</span> c = len/i,t=<span class="string">''</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j&lt;c;j++)&#123;</div><div class="line">                t+=s.substr(<span class="number">0</span>,i);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(t===s) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[intern-experience]]></title>
+      <url>https://leocecilia.github.io/2017/04/07/company-intern-experience/</url>
+      <content type="html"><![CDATA[<h2 id="实习情况"><a href="#实习情况" class="headerlink" title="实习情况"></a>实习情况</h2><p>今天是上班的第二天了，这几天我做了2个静态页面和一些Js效果。最大的感触大概就是公司需求变动还是挺大的，首先是table布局不被允许，他们说是因为table现在没什么人知道其特性，但是我觉得既然只是显示数据，那么<code>table</code>就是最好的布局啊。。。可是最后还是改成了<code>ul li</code>布局。</p>
+<p>第一次不用bootstrap框架和normalize.css来写静态页面，发现很多页面上有很多潜在的错误是我之前没有发现的，比如用<code>display: inline-block</code>可能会导致html上的元素和有js生成的相同标签的元素会有不同的间隙，这个时候就需要用到<code>float:left</code>来解除潜在的错误!</p>
+<p>然后的话，还有一个错误我没有找出来，那就是在jquery中，当我点击<code>button</code>后，然后将该<code>button</code>删除，接着再添加同样的<code>button</code>，当再次点击的时候jquery就找不到那个<code>button</code>，然后我就不知道为什么了。</p>
+<p>不过今天get到一个tip，那就是，hover元素的时候之后，会弹出tooltip，鼠标移去tooltip后，tooltip仍是<code>display:block;</code>，解决方法就是，让hover的元素放置在一个透明的父级里，让该父级的宽度要涵盖tooltip和hover元素，便可实现该效果。</p>
+<p>再然后就是，当提交有冲突的时候，我好像没有解决那些冲突问题，每次都是叫人帮忙解决，下次得自己解决一下那些问题。</p>
+<hr>
+<p>继续更新，周末去加班了，感觉今天的状态真的不太好，头晕，今天的任务主要是实现点赞反对的动态效果。现在说说今天遇到的问题。</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
+<li><p>以为元素只有一个，所以就没有考虑元素的扩展性，后来我就花了一倍的时间去完成那个效果。以后写代码之前，一定要先看清楚页面，问清楚需求，然后考虑js的扩展性</p>
+</li>
+<li><p>今天小组内所有人都在写着几个页面，所以在提交的时候，代码就发生了冲突，然后怎么搞都搞不定，最后就只能自己将自己修改的那部分，复制到记事本中，然后等明天复制粘贴过去。日后的解决方法便是每次要写其他文件时，要先询问其他人用没有做，然后进行提交，亦或是当天每个人写了的页面，其他人不许修改，这样子才能够避免冲突</p>
+</li>
+<li><p>交互逻辑出现了点问题，刚开始的时候是以样式来判断点赞或去点的，然后样式的改变是在ajax请求成功以后才执行，然而这是一个<strong>错误</strong>的思路，<strong>正确</strong>的思路是应该在元素上自定义属性，然后根据该属性的值，进行ajax请求，最后再改变其样式以及要渲染的数据!</p>
+</li>
+<li><p>要看清楚接口文档中的url,千万不要搞错,不然会被搞死的</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><p>以前自己自学前端的时候，没有跟后台进行交互，不会遇到现在这些问题，所以才说，业务的实践是自身所遇瓶颈的下限。但是不管如何都要巩固自己的基础，不然的话，你永远都只是一个页面仔，无法成为一个架构师!</p>
+</li>
+<li><p>要多点考虑元素的扩展性啊，这是相当重要的一件事情，还有代码的规范啊。</p>
+</li>
+<li><p>要多写js，这样的话，写css/html的时候，就会想着要为日后写js的时候,获取更方便的获取元素。</p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[面试经历]]></title>
       <url>https://leocecilia.github.io/2017/03/31/interview%20experience/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>经过一个星期的写简历，一个星期的等待时间，一个星期的面试时间，我终于都拿到了offer，感觉实在是不容易啊，现在特别记录一下面试时候的感觉。</p>
 <h2 id="软通动力面试"><a href="#软通动力面试" class="headerlink" title="软通动力面试"></a>软通动力面试</h2><p>刚开始进去感觉还有点小紧张，然后进去了之后，就让做一份试题，是关于前端的试题，里面有很多试题是我没有见过的，但是那里感觉有很多题目都是直接css写在html上面的，顿时就感觉这家外包公司在编码规范上就做得不太好，但是呢，有些css的属性我也确实忘记了，想起先前我一直都是使用的搜索式的学习，所以有很多属性都记得不太清楚。后来呢，那个hr就说对java开发感不感兴趣啊，可以来我们这里进行培训，然后每个月有1000块钱的补贴，说实话，那时候确实有一点点小动心。但是转念一想觉得世界上哪里有那么多便宜的事情啊，人家去培训你，肯定是要和你签订合约的，到时候合同上有什么猫腻的话，你还不就死定了，哎，又没有技术面试，想想就觉得不开心</p>
 <h2 id="方遒教育面试"><a href="#方遒教育面试" class="headerlink" title="方遒教育面试"></a>方遒教育面试</h2><p>这次面试差点就迟到了，哎，下次出门应该再早点才行的。面试过程先进行了自我介绍，然后呢，说一下自己的项目经验什么之类的，后来他问到了关于jquery的想法，面完之后，我才发现我对<strong>ajax技术</strong>其实并不太了解，想想还是得多点回去啃书，补回基础。后来，我就问他，我现在的状态或者说我所掌握的知识程度怎么样。然后他说我现在的状态其实还挺不错的，但是我学的不够深入，基础也不太扎实，如果有人带着的话，带我会上手的相对快一些，啊觉得回去多看基础还是挺重要的。</p>
 <h2 id="佳都科技面试"><a href="#佳都科技面试" class="headerlink" title="佳都科技面试"></a>佳都科技面试</h2><p>这次又是路痴的问题，哎不说了。刚开始面试官不按常理的出牌，顿时就将我的思路弄乱，以致于差点把面试搞砸了。然后面试官看了我的作品，于是我就把我的树形组件做给她看，但是一打开遍历的时候，发现这个遍历有bug，顿时就觉得相当的尴尬，而恰好我又忘记了自己原来已经带了鼠标，然后就很不好意思地问她，有没有网络/有没有鼠标啊之类的问题，这样的自己让我感觉很心慌。然后我就给她看了我自己做的静态页面，她觉得我这几个月做了这么多东西，已经相当不错了，顿时心中的紧张缓解了不少。然后她就让我去做机试，写了两个页面，其中一个实现tab变换，需要用到事件委托，然后当我真正去做的时候，发现有很多属性我都忘记了(这不正是所谓的搜索式的学习嘛，确实很不好)，然后心里就有点急，做了大概两个小时，终于将这个页面做好了(js代码写了20行)，然后当她看到页面的时候，就说页面实现的还挺不错的，可是我的js并没有考虑<strong>扩展性</strong>！这是相当重要的。比如说要是需求有所变动的话，那你岂不是都要改嘛。接着她仅用了4行代码就实现了那个功能，这真的把我给秒杀了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>),<span class="comment">//不用重复请求</span></div><div class="line">id = $<span class="keyword">this</span>.attr(attrid);<span class="comment">//获取自定义属性</span></div><div class="line">$<span class="keyword">this</span>.addClass(<span class="string">'active'</span>).sibling().removeClass(<span class="string">'active'</span>);<span class="comment">//这里使用了链式调用，是相当节省性能的</span></div><div class="line">$(id).css(<span class="string">'display'</span>,<span class="string">'block'</span>).sibling(<span class="string">'main'</span>).css(<span class="string">'display'</span>,<span class="string">'none'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>),<span class="comment">//不用重复请求</span></div><div class="line">	id = $<span class="keyword">this</span>.attr(attrid);<span class="comment">//获取自定义属性</span></div><div class="line">$<span class="keyword">this</span>.addClass(<span class="string">'active'</span>).sibling().removeClass(<span class="string">'active'</span>);<span class="comment">//这里使用了链式调用，是相当节省性能的</span></div><div class="line">$(id).css(<span class="string">'display'</span>,<span class="string">'block'</span>).sibling(<span class="string">'main'</span>).css(<span class="string">'display'</span>,<span class="string">'none'</span>);</div></pre></td></tr></table></figure>
 <p>顿时心中油然而生一股崇拜之情！然后她就说</p>
 <blockquote>
 <p>我发现你们这些应届生喜欢用插件去追求一些很酷炫的动效，但是却忽略了基础本身，要多看jquery，重拾回基础，其实很多大公司招应届生，首先考你的都是你的基础是否扎实，当然各种的网络协议啊，计算机基础都是要考到的。</p>
@@ -26,9 +102,10 @@
     </entry>
     
     <entry>
-      <title><![CDATA[IE和标准DOM事件模型的区别]]></title>
+      <title><![CDATA[事件模型]]></title>
       <url>https://leocecilia.github.io/2017/03/23/IE%E5%92%8C%E6%A0%87%E5%87%86DOM%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<h2 id="EventTarget接口"><a href="#EventTarget接口" class="headerlink" title="EventTarget接口"></a>EventTarget接口</h2><p>DOM事件操作(监听和触发)，都定义在<code>EventTarget</code>接口</p>
+]]></content>
     </entry>
     
     <entry>

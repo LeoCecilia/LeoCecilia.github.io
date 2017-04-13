@@ -271,6 +271,418 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/04/13/事件委托/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="vivian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/vivian.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="vivian blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/13/事件委托/" itemprop="url">
+                  jquery事件委托方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-13T20:03:58+08:00">
+                2017-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些天做了个点赞的效果，那时候没有用到事件委托的方法，想来相比起用事件委托方法，性能锐减，所以现在记录一下jquery中不同的事件绑定，触发，解绑的方法以及用途</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>事件代理是指将事件绑定到父级元素中，然后等待事件通过DOM冒泡到该元素再执行，事件侦听中有事件冒泡和事件捕获两种方法，而jquery中通过事件冒泡方式来实现事件代理，分别有<code>bind()</code>,<code>live()</code>,’delegate()’,’on(‘click’function)’方法来实现事件的绑定</p>
+<ul>
+<li>事件冒泡：从发生事件的元素向其祖先元素冒泡</li>
+<li>事件捕获：事件在DOM中寻找子元素</li>
+</ul>
+<hr>
+<p>现在介绍一下事件绑定有那些方法</p>
+<h2 id="最普通的事件绑定click"><a href="#最普通的事件绑定click" class="headerlink" title="最普通的事件绑定click()"></a>最普通的事件绑定<code>click()</code></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#div1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"点击后触发"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>不提供解绑定方法，且要每个元素逐一绑定</p>
+<h2 id="可解绑定的’on-‘click’-function-’"><a href="#可解绑定的’on-‘click’-function-’" class="headerlink" title="可解绑定的’on(‘click’,function)’"></a>可解绑定的’on(‘click’,function)’</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#div1"</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"点击后触发"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>可使用<code>$(&#39;#div1&#39;).off(&#39;click&#39;);</code>解除绑定</p>
+<h2 id="bind-方法-使用冒泡的形式"><a href="#bind-方法-使用冒泡的形式" class="headerlink" title="bind()方法(使用冒泡的形式)"></a><code>bind()方法</code>(使用冒泡的形式)</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#div1"</span>).bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span> <span class="title">consoleMe</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"点击后触发"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>可使用<code>unbind()</code>解除绑定<br>注意：<code>bind()</code>仅适用于为DOM中<strong>已经存在</strong>的元素绑定事件处理函数，<strong>动态生成</strong>的DOM元素，则不起作用<br>eg:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   	$(<span class="string">'.box'</span>).bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       	$(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container'</span>);        </div><div class="line">   	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>运行结果，单击第一个链接，会追加元素，但是除了第一个链接，其余都<strong>没有</strong>被绑定<code>click</code>事件</p>
+<h2 id="live"><a href="#live" class="headerlink" title="live()"></a><code>live()</code></h2><p><code>live()</code>在jquery1.9以后已被丢弃，但现在仍记录一下其用法<br><code>live()</code>与<code>bind()</code>的最大区别<strong>在于<code>live()</code>不仅作用于已经存在的DOM元素，还作用于将来动态生成的元素</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   	$(<span class="string">'.box'</span>).live(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       	$(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container'</span>);        </div><div class="line">   	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>注意<code>live()</code>使用了<strong>事件委托</strong>的方法，但是它有所下几个缺点： </p>
+<ol>
+<li><code>$()</code>函数会找到当前页面的所有.box元素并创建jquery对象，但在确认事件明白时却不用这个.box元素的组合，而是使用选择符表达式与<code>event.target</code>或其祖先元素进行比较，所以生成jquery对象会导致不必要的开销</li>
+<li><code>live()</code>默认把事件绑定到<code>$(document)</code>元素，如果DOM嵌套很深，事件冒泡通过大量祖先元素会导致性能缺失</li>
+<li>只有<code>$(&#39;.container .box&#39;)</code>才能使用<code>live()</code>,<code>$(&#39;.container&#39;).find(&#39;.box&#39;)</code>不行。<br>hack手段，早委托方式，其必须在head元素中进行加载，放在尾部则不管用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">	$(<span class="string">"#info_table td"</span>).live(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;/显示更多信息/&#125;);</div><div class="line">&#125;)(jQuery);<span class="comment">//jQuery对象</span></div></pre></td></tr></table></figure>
+<h2 id="delegate-是比较强大的方法"><a href="#delegate-是比较强大的方法" class="headerlink" title="delegate()是比较强大的方法"></a><code>delegate()</code>是比较强大的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.container'</span>).delegate(<span class="string">'.box'</span>,<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container:first'</span>);<span class="comment">//若没有涉及到数值的改变，则可以这般写，否则的话，其便会共用一个作用域，</span></div><div class="line">      <span class="comment">//解决方法有两个，一个是创建闭包，另一个是通过绑定一个Id选择器来获取该元素，并进行事件委托</span></div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+<p><code>delegate()</code>使用了<strong>事件委托</strong>的方法，其根元素是具体绑定的元素，由此看来，使用<code>delegate()</code>要比<code>live()</code>效率更高。</p>
+<p>提示：使用事件委托时，如果注册到目标元素上的其他事件处理程序使用.stopPropagation()阻止了事件传播，那么事件委托就会<strong>失效</strong>。</p>
+<h2 id="on-39-click-39-39-box-39-function-是比较新的方法"><a href="#on-39-click-39-39-box-39-function-是比较新的方法" class="headerlink" title="on(&#39;click&#39;,&#39;.box&#39;,function)是比较新的方法"></a><code>on(&#39;click&#39;,&#39;.box&#39;,function)</code>是比较新的方法</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/04/10/Repeated Substring Pattern/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="vivian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/vivian.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="vivian blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/10/Repeated Substring Pattern/" itemprop="url">
+                  Repeated Substring Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-10T17:26:22+08:00">
+                2017-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p><a href="https://leetcode.com/problems/repeated-substring-pattern/#/description" target="_blank" rel="external">需求链接</a></p>
+<p>Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>问题给了我们一个字符串，问能否拆成n个重复的子串。因此既然能拆分，那么每个子串的长度不能大于原字串长度的一半，那么我们可以从源字符串长度的一半遍历到1，如果当前长度能被总长度整除，说明可以分成若干个字符串，我们将这些子字符串拼接起来看跟原字符串是否相等。 如果拆完了都不相等，返回false。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> repeatedSubstringPattern = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> len = s.length;</div><div class="line">    <span class="keyword">if</span>(s.length===<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="built_in">Math</span>.ceil(len/<span class="number">2</span>);i&gt;=<span class="number">1</span>;i--) &#123;<span class="comment">//至少得两个元素，才能看看是不是重复</span></div><div class="line">        <span class="keyword">if</span>(len%i===<span class="number">0</span>) &#123;</div><div class="line">            <span class="comment">//如果能被整除，说明能分成若干个字符串，然后将这若干字符串拼接起来后的字符串，跟源字符串相等的话，那就说明相等，否则不等</span></div><div class="line">            <span class="keyword">var</span> c = len/i,t=<span class="string">''</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j&lt;c;j++)&#123;</div><div class="line">                t+=s.substr(<span class="number">0</span>,i);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span>(t===s) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/04/07/company-intern-experience/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="vivian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/vivian.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="vivian blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/07/company-intern-experience/" itemprop="url">
+                  intern-experience
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-07T10:49:03+08:00">
+                2017-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="实习情况"><a href="#实习情况" class="headerlink" title="实习情况"></a>实习情况</h2><p>今天是上班的第二天了，这几天我做了2个静态页面和一些Js效果。最大的感触大概就是公司需求变动还是挺大的，首先是table布局不被允许，他们说是因为table现在没什么人知道其特性，但是我觉得既然只是显示数据，那么<code>table</code>就是最好的布局啊。。。可是最后还是改成了<code>ul li</code>布局。</p>
+<p>第一次不用bootstrap框架和normalize.css来写静态页面，发现很多页面上有很多潜在的错误是我之前没有发现的，比如用<code>display: inline-block</code>可能会导致html上的元素和有js生成的相同标签的元素会有不同的间隙，这个时候就需要用到<code>float:left</code>来解除潜在的错误!</p>
+<p>然后的话，还有一个错误我没有找出来，那就是在jquery中，当我点击<code>button</code>后，然后将该<code>button</code>删除，接着再添加同样的<code>button</code>，当再次点击的时候jquery就找不到那个<code>button</code>，然后我就不知道为什么了。</p>
+<p>不过今天get到一个tip，那就是，hover元素的时候之后，会弹出tooltip，鼠标移去tooltip后，tooltip仍是<code>display:block;</code>，解决方法就是，让hover的元素放置在一个透明的父级里，让该父级的宽度要涵盖tooltip和hover元素，便可实现该效果。</p>
+<p>再然后就是，当提交有冲突的时候，我好像没有解决那些冲突问题，每次都是叫人帮忙解决，下次得自己解决一下那些问题。</p>
+<hr>
+<p>继续更新，周末去加班了，感觉今天的状态真的不太好，头晕，今天的任务主要是实现点赞反对的动态效果。现在说说今天遇到的问题。</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
+<li><p>以为元素只有一个，所以就没有考虑元素的扩展性，后来我就花了一倍的时间去完成那个效果。以后写代码之前，一定要先看清楚页面，问清楚需求，然后考虑js的扩展性</p>
+</li>
+<li><p>今天小组内所有人都在写着几个页面，所以在提交的时候，代码就发生了冲突，然后怎么搞都搞不定，最后就只能自己将自己修改的那部分，复制到记事本中，然后等明天复制粘贴过去。日后的解决方法便是每次要写其他文件时，要先询问其他人用没有做，然后进行提交，亦或是当天每个人写了的页面，其他人不许修改，这样子才能够避免冲突</p>
+</li>
+<li><p>交互逻辑出现了点问题，刚开始的时候是以样式来判断点赞或去点的，然后样式的改变是在ajax请求成功以后才执行，然而这是一个<strong>错误</strong>的思路，<strong>正确</strong>的思路是应该在元素上自定义属性，然后根据该属性的值，进行ajax请求，最后再改变其样式以及要渲染的数据!</p>
+</li>
+<li><p>要看清楚接口文档中的url,千万不要搞错,不然会被搞死的</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li><p>以前自己自学前端的时候，没有跟后台进行交互，不会遇到现在这些问题，所以才说，业务的实践是自身所遇瓶颈的下限。但是不管如何都要巩固自己的基础，不然的话，你永远都只是一个页面仔，无法成为一个架构师!</p>
+</li>
+<li><p>要多点考虑元素的扩展性啊，这是相当重要的一件事情，还有代码的规范啊。</p>
+</li>
+<li><p>要多写js，这样的话，写css/html的时候，就会想着要为日后写js的时候,获取更方便的获取元素。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/03/31/interview experience/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -355,7 +767,7 @@
 <h2 id="软通动力面试"><a href="#软通动力面试" class="headerlink" title="软通动力面试"></a>软通动力面试</h2><p>刚开始进去感觉还有点小紧张，然后进去了之后，就让做一份试题，是关于前端的试题，里面有很多试题是我没有见过的，但是那里感觉有很多题目都是直接css写在html上面的，顿时就感觉这家外包公司在编码规范上就做得不太好，但是呢，有些css的属性我也确实忘记了，想起先前我一直都是使用的搜索式的学习，所以有很多属性都记得不太清楚。后来呢，那个hr就说对java开发感不感兴趣啊，可以来我们这里进行培训，然后每个月有1000块钱的补贴，说实话，那时候确实有一点点小动心。但是转念一想觉得世界上哪里有那么多便宜的事情啊，人家去培训你，肯定是要和你签订合约的，到时候合同上有什么猫腻的话，你还不就死定了，哎，又没有技术面试，想想就觉得不开心</p>
 <h2 id="方遒教育面试"><a href="#方遒教育面试" class="headerlink" title="方遒教育面试"></a>方遒教育面试</h2><p>这次面试差点就迟到了，哎，下次出门应该再早点才行的。面试过程先进行了自我介绍，然后呢，说一下自己的项目经验什么之类的，后来他问到了关于jquery的想法，面完之后，我才发现我对<strong>ajax技术</strong>其实并不太了解，想想还是得多点回去啃书，补回基础。后来，我就问他，我现在的状态或者说我所掌握的知识程度怎么样。然后他说我现在的状态其实还挺不错的，但是我学的不够深入，基础也不太扎实，如果有人带着的话，带我会上手的相对快一些，啊觉得回去多看基础还是挺重要的。</p>
 <h2 id="佳都科技面试"><a href="#佳都科技面试" class="headerlink" title="佳都科技面试"></a>佳都科技面试</h2><p>这次又是路痴的问题，哎不说了。刚开始面试官不按常理的出牌，顿时就将我的思路弄乱，以致于差点把面试搞砸了。然后面试官看了我的作品，于是我就把我的树形组件做给她看，但是一打开遍历的时候，发现这个遍历有bug，顿时就觉得相当的尴尬，而恰好我又忘记了自己原来已经带了鼠标，然后就很不好意思地问她，有没有网络/有没有鼠标啊之类的问题，这样的自己让我感觉很心慌。然后我就给她看了我自己做的静态页面，她觉得我这几个月做了这么多东西，已经相当不错了，顿时心中的紧张缓解了不少。然后她就让我去做机试，写了两个页面，其中一个实现tab变换，需要用到事件委托，然后当我真正去做的时候，发现有很多属性我都忘记了(这不正是所谓的搜索式的学习嘛，确实很不好)，然后心里就有点急，做了大概两个小时，终于将这个页面做好了(js代码写了20行)，然后当她看到页面的时候，就说页面实现的还挺不错的，可是我的js并没有考虑<strong>扩展性</strong>！这是相当重要的。比如说要是需求有所变动的话，那你岂不是都要改嘛。接着她仅用了4行代码就实现了那个功能，这真的把我给秒杀了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>),<span class="comment">//不用重复请求</span></div><div class="line">id = $<span class="keyword">this</span>.attr(attrid);<span class="comment">//获取自定义属性</span></div><div class="line">$<span class="keyword">this</span>.addClass(<span class="string">'active'</span>).sibling().removeClass(<span class="string">'active'</span>);<span class="comment">//这里使用了链式调用，是相当节省性能的</span></div><div class="line">$(id).css(<span class="string">'display'</span>,<span class="string">'block'</span>).sibling(<span class="string">'main'</span>).css(<span class="string">'display'</span>,<span class="string">'none'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>),<span class="comment">//不用重复请求</span></div><div class="line">	id = $<span class="keyword">this</span>.attr(attrid);<span class="comment">//获取自定义属性</span></div><div class="line">$<span class="keyword">this</span>.addClass(<span class="string">'active'</span>).sibling().removeClass(<span class="string">'active'</span>);<span class="comment">//这里使用了链式调用，是相当节省性能的</span></div><div class="line">$(id).css(<span class="string">'display'</span>,<span class="string">'block'</span>).sibling(<span class="string">'main'</span>).css(<span class="string">'display'</span>,<span class="string">'none'</span>);</div></pre></td></tr></table></figure>
 <p>顿时心中油然而生一股崇拜之情！然后她就说</p>
 <blockquote>
 <p>我发现你们这些应届生喜欢用插件去追求一些很酷炫的动效，但是却忽略了基础本身，要多看jquery，重拾回基础，其实很多大公司招应届生，首先考你的都是你的基础是否扎实，当然各种的网络协议啊，计算机基础都是要考到的。</p>
@@ -431,7 +843,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/23/IE和标准DOM事件模型的区别/" itemprop="url">
-                  IE和标准DOM事件模型的区别
+                  事件模型
                 </a>
               
             
@@ -485,7 +897,8 @@
       
         
           
-            
+            <h2 id="EventTarget接口"><a href="#EventTarget接口" class="headerlink" title="EventTarget接口"></a>EventTarget接口</h2><p>DOM事件操作(监听和触发)，都定义在<code>EventTarget</code>接口</p>
+
           
         
       
@@ -1346,461 +1759,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/03/04/learn-of-city/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="vivian">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/uploads/vivian.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="vivian blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/04/learn-of-city/" itemprop="url">
-                  市井讲价之心理拉锯战
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-04T14:29:57+08:00">
-                2017-03-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之所以会发出这篇文章，是由于昨天与男友买衣服所收到的启发</p>
-<hr>
-<h3 id="场景1"><a href="#场景1" class="headerlink" title="场景1"></a>场景1</h3><p>我们进入了一家装饰风格略显 <strong>拘束</strong>的小店中，略微询问了下价格，价格倒是便宜，摸上去材质却也是一般，想来其货色是较下层等次，拿了好几件衣服试穿，或许是因为我们本身比较旺场，店里客人接踵而来，于是我也不好意思继续占着更衣室，便退了出来，当我想要再试另外一件衣服之前，老板娘却<strong>黑着脸</strong>说，不用再试了，比比就知道好不好看啦。然后我们便甚为不爽，本想多买几件，现在居然还赶起人来了。最终不还是只有我们买下来了。</p>
-<h3 id="场景1分析"><a href="#场景1分析" class="headerlink" title="场景1分析"></a>场景1分析</h3><p>其实由店中的装饰风格，便可看出，店家的度量与为人处事。当我们觉察到我们占用了店中的资源时，我们便很知趣的退了下来，然而当我们想要继续去试衣服时，这是无可厚非，因为这是公众场合，每个人都有机会去试衣间试穿衣服，然而她却只以为我们占着试衣间，就<strong>得失</strong>我们，却没看到我们也是潜在的客源，即便我们这次不买，若是试穿的高兴的话，也许下一次还会叫身边的人去买衣服呢。</p>
-<h3 id="试衣感受"><a href="#试衣感受" class="headerlink" title="试衣感受"></a>试衣感受</h3><p>很不美好。当天我刚好来M，且试穿衣服亦是一件累人的活计，于是心情也便有些许不佳，再加上新买的鞋子穿进穿出很累人，到后来试穿裹胸的时候，我就觉得勒的很紧，所以就更郁闷啦，我就向我男友抱怨说我不喜欢这裹胸，他就笑着说，不要就不要嘛，怎么好像很委屈的样子。可是他还一直要找别的裹胸给我。</p>
-<hr>
-<h3 id="场景2"><a href="#场景2" class="headerlink" title="场景2"></a>场景2</h3><p>我们进入了一家装饰风格较为敞亮的店中，售货员是男的，练手之心便来了。如同上次一般，不久店内便有很多人到来，各式美女都在试穿着衣裳，忽觉做售货员也是一种美好的享受，能够看着各式美女展现出她们的苗条身材，视觉上的享受得以满足。一位美女在踌躇着挑选衣服，这时我男朋友便选了一件衣服给她，并说:”你看哈，如果把里面的衬衣稍微露出来一丢丢，让牛仔衣自然垂下，便会很好看的啦”，那美女便说:”好像是有那么点道理哦!<strong>这件多少钱</strong>啊。”我男友便笑了:”我不是售货员。” “你看我都帮你推销了，是不是要给我们打折啊。”男友说。这时美女也一起附和说:”得打八折。”然后我们便让那位美女先付账，然后我们再跟他展开拉锯大战。最后我们还是将价格讲到了自己目标的价位</p>
-<h3 id="场景2分析"><a href="#场景2分析" class="headerlink" title="场景2分析"></a>场景2分析</h3><p>在此处，我掌握了一些讲价的策略。当一开始问价时，应先问其价，此时对方不会减太多，然后要表示出一脸嫌弃的模样，嫌贵，然后当对方问你想要多少钱时，不能<strong>立马</strong>将自己内心的价位告诉对方，而应先往下报价，此时对方肯定表示不行，铺租都不够了，然后我们再可以继续提价，但又不可提太多，得加一丢丢，显示自己很小气的样子，对方肯定仍不肯，这时便可出门走开，但要脚步放慢，表示出有回旋的余地。此时，对方肯定说，你得加，那么这个时候，我们就可以说，那就再加… 对方不肯，继续往前走，”好啦好啦，75，75就给你啦”。”我刚刚听到好像说60”;”不是65，65”，这样70收工。</p>
-<hr>
-<p>继续分析，首先砍一半价格是合理的，因为通常情况下，其开价后所赚到的利润是200%,接着逐渐展开拉锯之战，当对方以为砍下了25%价格，便以为交易能够达成，但是，你坚定自己立场，明确表态价格便该是这样子的。这个时候，他便会相对应的继续减价，因为生意总是要做的，当到他只能赚10多块钱的时候，要他出手，仍是有可能的，因为卖出总比放着，一直放着可能便会亏损，倒是卖出， <strong>不仅赚到薄利，更能赚到的是客源，其实很多人都看不到这一点</strong> 。我以薄利来赚取你的好感，从而你便会带你相熟之人继续去帮衬，从而源源不断。人与人之间的关系亦是如此。这个男售货员就不会得失顾客，首先就是给你一种很和善的感觉，而且还会适时给予你推荐搭配的建议。</p>
-<h3 id="场景2试衣感受"><a href="#场景2试衣感受" class="headerlink" title="场景2试衣感受"></a>场景2试衣感受</h3><p>感觉好好玩哦，学到挺多心理策略，顾客就是上帝，前提还是要你略微估摸一下它的价格，不能随便砍价。</p>
-<hr>
-<h3 id="场景3"><a href="#场景3" class="headerlink" title="场景3"></a>场景3</h3><p>我们去到了一家很讲究整洁的小店，店家很认真的擦拭自己店门的玻璃，但是当我们问推荐衣服的时候，他却随便指了一件衣服给我们看，也没有说出怎么推荐搭配穿着的建议，结果觉得试衣扫兴，便就离开了。</p>
-<h3 id="场景3分析"><a href="#场景3分析" class="headerlink" title="场景3分析"></a>场景3分析</h3><p>其实本来店家讲究简洁是一件好事情，但是呢，他却不会说话，没有去满足顾客的需求，并适时给予顾客建议。</p>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>– 售货员角度：当你拿到中下等次的货色时，你不能得失顾客，得让顾客买的舒心，当你拿到较好等次的货色时，<strong>你得适当给予顾客一些穿衣打扮的建议，尤其是在其踌躇郁闷之时，给予他一声定锤，但是同时你不能将自己的意志凌驾于顾客至上</strong>，永远谨记顾客便是你的上帝。其实跟男友一起出去逛街，感受生活，这是一件十分有趣的事情，顾客与售货员之间的心理拉锯大战每日都在重演着，多点去感受生活，去真实的感受一下面对面的拉锯心理战，这便是人与人之间的关系缩影啊。</p>
-<p>– 顾客角度：不要把自己的价位一开始便暴露给售货员，因为无论如何都要往上抬价，</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/03/02/learn-of-React/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="vivian">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/uploads/vivian.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="vivian blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/02/learn-of-React/" itemprop="url">
-                  React学习之旅
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T21:02:50+08:00">
-                2017-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="React介绍"><a href="#React介绍" class="headerlink" title="React介绍"></a>React介绍</h2><h3 id="认识误区"><a href="#认识误区" class="headerlink" title="认识误区"></a>认识误区</h3><ul>
-<li><p>React不是完整的MVC框架，最多只是MVC中的V(view)，甚至React本身都不认可MVC开发模式</p>
-</li>
-<li><p>React并不是在任何情况下，都是性能最佳的框架，在有大量DOM改动的情况下，React的性能较差</p>
-</li>
-<li><p>React不是一个新的模板语言，JSX只是一个表象，没有JSX的React也能工作</p>
-</li>
-</ul>
-<h3 id="React原理"><a href="#React原理" class="headerlink" title="React原理"></a>React原理</h3><ul>
-<li>React 会完整的复制一份DOM Tree,然后通过标记dirty nodes 来找到真正重绘的Nodes。</li>
-</ul>
-<p>– eg.某个DOM被标记说要更新，那么它以下所有的subTree都要被调用<code>shouldComponentUpdate</code>。关键是从<code>setState</code>被触发后，其自身节点到其所有子节点都要被呼叫到<code>shouldComponentUpdate</code>,遍历所有节点的时间成本是很高的。</p>
-<h3 id="React知识点"><a href="#React知识点" class="headerlink" title="React知识点"></a>React知识点</h3><ul>
-<li><p><code>getDefaultProps</code>只在组件创建时调用一次并缓存对象(即在<code>React.createClass</code>之后就会调用)此方法不能以来<code>this</code>获得这个组件实例。使用ES6语法，直接定义<code>defaultProps</code>这个类属性来替代,<code>Temp.defaultProps = {initialCount: 0};</code></p>
-</li>
-<li><p><code>getInitialState</code>,初始化<code>this.state</code>的值，只在组件装载之前调用一次，若使用ES6语法，可在构造函数中初始状态</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Temp</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(props)&#123;</div><div class="line">      <span class="keyword">super</span>(props);</div><div class="line">      <span class="keyword">this</span>.state = &#123;<span class="attr">count</span>: <span class="number">0</span>&#125;;</div><div class="line">   &#125;</div><div class="line">   render() &#123;</div><div class="line">  </div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><code>render</code>必须用于生成此组件的HTML结构，可返回<code>null</code>或者<code>false</code>，这时候<code>ReactDOM.findDOMNode(tjos)</code>会返回<code>null</code></li>
-</ul>
-<h2 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h2><h3 id="装载组件触发"><a href="#装载组件触发" class="headerlink" title="装载组件触发"></a>装载组件触发</h3><h4 id="componentWillMount"><a href="#componentWillMount" class="headerlink" title="componentWillMount"></a><code>componentWillMount</code></h4><ul>
-<li>只在装载之前调用一次，在<code>render</code>之前调用，可在这个方法调用<code>this.state</code>改变状态，此处不会额外调用<code>render</code></li>
-</ul>
-<h3 id="更新组件触发"><a href="#更新组件触发" class="headerlink" title="更新组件触发"></a>更新组件触发</h3><ul>
-<li><code>componentWillReceiveProps</code></li>
-<li><code>shouldComponentUpdate</code></li>
-<li><p><code>shouldComponentUpdate(nextProps,nextState)</code><br>– 调用shouldComponentUpdate可以让React知道一个组件的输出是否会被当前状态或参数的改变而影响，默认的行为是在每一个状态改变后便重新渲染页面，而且在大多情况下需要依赖这个默认的行为。<br>当新的参数和状态被接收到时shouldComponentUpdate就会被调用。此方法不会在首次render或是forceUpdate在执行时被调用</p>
-</li>
-<li><p><code>componentWillUpdate</code></p>
-</li>
-<li><code>componentDidUpdate</code></li>
-</ul>
-<h3 id="卸载组件触发"><a href="#卸载组件触发" class="headerlink" title="卸载组件触发"></a>卸载组件触发</h3><ul>
-<li><code>componentWillUnmount</code></li>
-</ul>
-<h3 id="React的核心"><a href="#React的核心" class="headerlink" title="React的核心"></a>React的核心</h3><ul>
-<li><p>虚拟DOM，传统的diff(比较新DOM与虚拟DOM的差异，然后再加以渲染),但facebook工程师采用了更近大胆的策略，当然这必定有所牺牲</p>
-</li>
-<li><p>DOM节点跨层级少</p>
-</li>
-<li>组件，不同组件基本不同DOM，比较是否同一类型组件，若否，删除原有节点，新增整个组件下的子节点，若是，比较ELEMENT</li>
-<li>同一层级的子节点，可用ID区分，然后根据节点ID，进行移位操作，得到如何修改，删除，新增</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/03/02/build-the-game-of-life/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="vivian">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/uploads/vivian.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="vivian blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/02/build-the-game-of-life/" itemprop="url">
-                  build the game of life
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-02T16:03:43+08:00">
-                2017-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="build-the-game-of-life-204"><a href="#build-the-game-of-life-204" class="headerlink" title="build the game of life(204)"></a><a href="https://www.freecodecamp.com/challenges/build-the-game-of-life" target="_blank" rel="external">build the game of life</a>(204)</h2><h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p><a href="https://en.wikipedia.org/wiki/The_Game_of_Life" target="_blank" rel="external">game of life</a>(英文版)<br><a href="https://zh.wikipedia.org/zh-hans/%E5%BA%B7%E5%A8%81%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F" target="_blank" rel="external">康威生命游戏</a>(中文版)</p>
-<hr>
-<h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><ul>
-<li>当前细胞为存活状态时，当周围低于2个（不包含2个）存活细胞时， 该细胞变成死亡状态。（模拟生命数量稀少）</li>
-<li>当前细胞为存活状态时，当周围有2个或3个存活细胞时， 该细胞保持原样。<br>当前细胞为存活状态时，当周围有3个以上的存活细胞时，该细胞变成死亡状态。（模拟生命数量过多）</li>
-<li>当前细胞为死亡状态时，当周围有3个存活细胞时，该细胞变成存活状态。 （模拟繁殖）</li>
-</ul>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="核心算法部分"><a href="#核心算法部分" class="headerlink" title="核心算法部分"></a>核心算法部分</h3><ul>
-<li>创建一个2d数组来储存细胞</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">createGrid() &#123;</div><div class="line">    <span class="keyword">var</span> grid = [];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">25</span>; i++) &#123;</div><div class="line">      <span class="keyword">var</span> row = [];</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">40</span>; j++) &#123;</div><div class="line">        <span class="keyword">var</span> random = <span class="built_in">Math</span>.random()/<span class="number">1</span>; <span class="comment">//简单的random算法，可百度</span></div><div class="line">        <span class="keyword">if</span> (random &lt; <span class="number">0.3</span>) &#123;</div><div class="line">          row.push(<span class="number">1</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          row.push(<span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      grid.push(row);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> grid;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>由规则可知，其主要难点是找出每个细胞的邻居总数</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">calculateNeighbour(x,y) &#123;</div><div class="line">	<span class="comment">//注意25乃是arr.length;</span></div><div class="line">	<span class="comment">//40乃是arr[i].length;</span></div><div class="line">    <span class="keyword">let</span> topRow = x<span class="number">-1</span>&lt;<span class="number">0</span>?(<span class="number">25</span><span class="number">-1</span>):x<span class="number">-1</span>;</div><div class="line">    <span class="keyword">let</span> bottomRow = (x+<span class="number">1</span>===<span class="number">25</span>)?<span class="number">0</span>:x+<span class="number">1</span>;</div><div class="line">    <span class="keyword">let</span> leftColumn = y<span class="number">-1</span>&lt;<span class="number">0</span>?(<span class="number">40</span><span class="number">-1</span>):y<span class="number">-1</span>;</div><div class="line">    <span class="keyword">let</span> rightColumn = (y+<span class="number">1</span>===<span class="number">40</span>)?<span class="number">0</span>:y+<span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> total = <span class="number">0</span>;</div><div class="line">    total += (<span class="keyword">this</span>.state.Grid[topRow][leftColumn]&gt;<span class="number">0</span>?<span class="number">1</span>:<span class="number">0</span>);</div><div class="line">    total += (<span class="keyword">this</span>.state.Grid[topRow][y]&gt;<span class="number">0</span>?<span class="number">1</span>:<span class="number">0</span>);</div><div class="line">    total += (<span class="keyword">this</span>.state.Grid[topRow][rightColumn]&gt;<span class="number">0</span>?<span class="number">1</span>:<span class="number">0</span>);</div><div class="line">    total += (<span class="keyword">this</span>.state.Grid[x][leftColumn]&gt;<span class="number">0</span>?<span class="number">1</span>:<span class="number">0</span>);</div><div class="line">    total += (<span class="keyword">this</span>.state.Grid[x][rightColumn]&gt;<span class="number">0</span>?<span class="number">1</span>:<span class="number">0</span>);</div><div class="line">    total += (<span class="keyword">this</span>.state.Grid[bottomRow][leftColumn]&gt;<span class="number">0</span>?<span class="number">1</span>:<span class="number">0</span>);</div><div class="line">    total += (<span class="keyword">this</span>.state.Grid[bottomRow][y]&gt;<span class="number">0</span>?<span class="number">1</span>:<span class="number">0</span>);</div><div class="line">    total += (<span class="keyword">this</span>.state.Grid[bottomRow][rightColumn]&gt;<span class="number">0</span>?<span class="number">1</span>:<span class="number">0</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> total;    </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>对grid中所有元素都应用生命游戏规则</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">update() &#123;</div><div class="line">    <span class="keyword">var</span> copyGrid = [];</div><div class="line">    <span class="keyword">var</span> len = <span class="keyword">this</span>.state.Grid.length;  </div><div class="line">    <span class="keyword">var</span> Len = <span class="keyword">this</span>.state.Grid[<span class="number">0</span>].length;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len ; i++) &#123;</div><div class="line">        <span class="keyword">let</span> row = [];</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="keyword">this</span>.state.Grid[i].length; j++) &#123;</div><div class="line">        <span class="keyword">var</span> neighbours = <span class="keyword">this</span>.calculateNeighbour(i,j);</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.state.Grid[i][j])&#123;</div><div class="line">          <span class="keyword">if</span>(neighbours&lt;<span class="number">2</span>||neighbours&gt;<span class="number">3</span>)&#123;</div><div class="line">            row.push(<span class="number">0</span>);</div><div class="line">          &#125;<span class="keyword">else</span> &#123;</div><div class="line">            row.push(<span class="number">1</span>);</div><div class="line">          &#125;</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">          <span class="keyword">if</span>(neighbours===<span class="number">3</span>)&#123;</div><div class="line">            row.push(<span class="number">2</span>);</div><div class="line">          &#125;<span class="keyword">else</span>&#123;</div><div class="line">            row.push(<span class="number">0</span>);</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">      &#125;</div><div class="line">      copyGrid.push(row);</div><div class="line">    &#125;    </div><div class="line">    <span class="keyword">return</span> copyGrid;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>至此核心算法算是完成。</p>
-<h3 id="render-部分"><a href="#render-部分" class="headerlink" title="render 部分"></a>render 部分</h3><h4 id="使用React框架，想要了解更多React框架知识，请移步此处"><a href="#使用React框架，想要了解更多React框架知识，请移步此处" class="headerlink" title="使用React框架，想要了解更多React框架知识，请移步此处"></a>使用React框架，想要了解更多React框架知识，请移步此处</h4><ul>
-<li>GameFeedBack部分<br>– 主要是显示当前alive的总数和generation的总数</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GameFeedback</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className="feedback col-md-12 col-sm-12 col-lg-12"&gt;</div><div class="line">        &lt;div className="population col-md-6"&gt;</div><div class="line">          &lt;h5&gt;Population: &#123;this.props.population&#125;&lt;/h5&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div className="generations col-md-6"&gt;</div><div class="line">          &lt;h5&gt;Generations: &#123;this.props.generations&#125;&lt;/h5&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>ButtonTool部分<br>– 注意此处onclick事件所调用的方法均在App组件中定义，是为了避免<code>this</code>的混淆，用<code>this.props</code>获取方法。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ButtonTool</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">var</span> text = <span class="string">'Start'</span>;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.props.running) &#123;</div><div class="line">      text = <span class="string">'Parse'</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> (      </div><div class="line">      &lt;div className="btn-group" role="group" aria-label="..."&gt;</div><div class="line">        &lt;button onClick = &#123;this.props.parseGame&#125; id="playOrParse" type="button" className="btn btn-primary"&gt;&#123;text&#125;&lt;/button&gt;</div><div class="line">        &lt;button onClick = &#123;this.props.clear&#125; id="clear" type="button" className="btn btn-primary"&gt;clear&lt;/button&gt;</div><div class="line">        &lt;button onClick = &#123;this.props.restart&#125; id="restart" type="button" className="btn btn-primary"&gt;restart&lt;/button&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Board部分</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Board</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="comment">//无论何时何地，只要状态改变，即会调用render函数</span></div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);    </div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className = 'tableContainer'&gt;</div><div class="line">        &lt;table&gt;</div><div class="line">          &lt;tbody&gt;              </div><div class="line">            &#123;this.props.Grid.map((row,i) =&gt;</div><div class="line">              &lt;tr key=&#123;i&#125;&gt;&#123;row.map((cell,j) =&gt;</div><div class="line">                  &lt;Cell</div><div class="line">                    X = &#123;i&#125;</div><div class="line">                    Y = &#123;j&#125;</div><div class="line">                    key = &#123;j&#125;</div><div class="line">                    handleClick=&#123;this.props.onClick.bind(this)&#125;</div><div class="line">                    status=&#123;cell&#125;</div><div class="line">                     /&gt;)&#125;</div><div class="line">              &lt;/tr&gt;)&#125;            </div><div class="line">          &lt;/tbody&gt;</div><div class="line">        &lt;/table&gt;   </div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Cell部分</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cell</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);    </div><div class="line">  &#125;  </div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">let</span> fill = <span class="string">''</span>;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.props.status===<span class="number">1</span>)&#123;</div><div class="line">      fill = <span class="string">'alive'</span>;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.props.status===<span class="number">2</span>)&#123;</div><div class="line">      fill = <span class="string">'newBorn'</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">      fill=<span class="string">''</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> (&lt;td className =&#123;fill&#125; onClick=&#123;this.props.handleClick.bind(this,this.props.X,this.props.Y)&#125;&gt;&lt;/td&gt;);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>App部分<br>– 此部分主要是将先前的所有组件连接在一起，并且定义交互时需要调用的方法，以及game的过程方法</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1848,7 +1806,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1859,7 +1817,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
