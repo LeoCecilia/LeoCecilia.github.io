@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jquery,DOM," />
+  <meta name="keywords" content="DOM,jquery," />
 
 
 
@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="vivian blog">
 <meta property="og:description" content="前言前些天做了个点赞的效果，那时候没有用到事件委托的方法，想来相比起用事件委托方法，性能锐减，所以现在记录一下jquery中不同的事件绑定，触发，解绑的方法以及用途
 定义事件代理是指将事件绑定到父级元素中，然后等待事件通过DOM冒泡到该元素再执行，事件侦听中有事件冒泡和事件捕获两种方法，而jquery中通过事件冒泡方式来实现事件代理，分别有bind(),live(),delegate(),on(&amp;">
-<meta property="og:updated_time" content="2017-04-13T13:40:12.241Z">
+<meta property="og:updated_time" content="2017-04-15T06:30:34.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jquery事件委托方法">
 <meta name="twitter:description" content="前言前些天做了个点赞的效果，那时候没有用到事件委托的方法，想来相比起用事件委托方法，性能锐减，所以现在记录一下jquery中不同的事件绑定，触发，解绑的方法以及用途
@@ -371,7 +371,7 @@
 <h2 id="live"><a href="#live" class="headerlink" title="live()"></a>live()</h2><p><code>live()</code>在jquery1.9以后已被丢弃，但现在仍记录一下其用法，<code>live()</code>与<code>bind()</code>的最大区别<strong>在于<code>live()</code>不仅作用于已经存在的DOM元素，还作用于将来动态生成的元素</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   	$(<span class="string">'.box'</span>).live(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       	$(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container'</span>);        </div><div class="line">   	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>注意<code>live()</code>使用了<strong>事件委托</strong>的方法，但是它有所下几个缺点： </p>
+<p>注意<code>live()</code>使用了<strong>事件委托</strong>的方法，但是它有所下几个缺点：</p>
 <ol>
 <li><code>$()</code>函数会找到当前页面的所有.box元素并创建jquery对象，但在确认事件明白时却不用这个.box元素的组合，而是使用选择符表达式与<code>event.target</code>或其祖先元素进行比较，所以生成jquery对象会导致不必要的开销</li>
 <li><code>live()</code>默认把事件绑定到<code>$(document)</code>元素，如果DOM嵌套很深，事件冒泡通过大量祖先元素会导致性能缺失</li>
@@ -382,6 +382,7 @@
 <p><code>delegate()</code>使用了<strong>事件委托</strong>的方法，其根元素是具体绑定的元素，由此看来，使用<code>delegate()</code>要比<code>live()</code>效率更高。</p>
 <p>提示：使用事件委托时，如果注册到目标元素上的其他事件处理程序使用.stopPropagation()阻止了事件传播，那么事件委托就会<strong>失效</strong>。</p>
 <h2 id="on-‘click’-’-box’-function-是比较新的方法"><a href="#on-‘click’-’-box’-function-是比较新的方法" class="headerlink" title="on(‘click’,’.box’,function)是比较新的方法"></a>on(‘click’,’.box’,function)是比较新的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.container'</span>).on(<span class="string">'click'</span>,<span class="string">'.box'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container:first'</span>);<span class="comment">//若没有涉及到数值的改变，则可以这般写，否则的话，其便会共用一个作用域，</span></div><div class="line">      <span class="comment">//解决方法有两个，一个是创建闭包，另一个是通过绑定一个Id选择器来获取该元素，并进行事件委托</span></div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -404,9 +405,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/jquery/" rel="tag"># jquery</a>
-          
             <a href="/tags/DOM/" rel="tag"># DOM</a>
+          
+            <a href="/tags/jquery/" rel="tag"># jquery</a>
           
         </div>
       
@@ -424,6 +425,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/15/辞职感受/" rel="prev" title="辞职感受">
+                辞职感受 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -493,7 +498,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -504,7 +509,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

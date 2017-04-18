@@ -4,6 +4,40 @@
   
     
     <entry>
+      <title><![CDATA[company-html's trick]]></title>
+      <url>https://leocecilia.github.io/2017/04/17/%E5%85%AC%E5%8F%B8%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</url>
+      <content type="html"><![CDATA[<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ul>
+<li><p>建立树形结构时，使用<code>dl</code>,<code>dt</code>,<code>dd</code>标签，而不是使用<code>ul li</code>标签，如此便不需要另外为第一个<code>li</code>设置title样式</p>
+</li>
+<li><p>若顶栏和侧边栏<strong>固定</strong>时，内容栏可使用<code>iframe</code>进行异步加载，若该内容栏中有诸如新建这种需要跳转别的页面的功能，则可使用<code>div</code>嵌套<code>iframe</code>来实现异步加载。(即有两个<code>iframe</code>)</p>
+<ul>
+<li>具体做法：加载内容页时，嵌套的<code>iframe</code>的父层设为<code>display:none;</code>，且嵌套的<code>iframe</code>的<code>src=&quot;&quot;</code>，当点击新建btn时，再向iframe的父层设为<code>display:block;</code>，并将嵌套的<code>iframe</code>的<code>src=</code>对应的html路径</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>呈现表格的时候，要将表头，和表身分开成两个<code>div</code>嵌套<code>table</code>，并把表身<strong>定高</strong>，<strong>这样做是为了当表身内容无限多的时候，可产生滚动条</strong>，这样子，表头便固定在表格的顶部，用户体验就会更加好</p>
+</li>
+<li><p>弹窗的时候，其主要的html是</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"overlay-window"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">iframe</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"caption"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">iframe</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>第一个<code>iframe</code>的src值为空，其目的是为了遮住视频控件，因为视频控件的<code>z-index</code>是相当高的，而第二个则是加载另外一个页面</p>
+</li>
+<li><p>要灵活运用自定义属性，以达到Js的扩展性</p>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[辞职感受]]></title>
+      <url>https://leocecilia.github.io/2017/04/15/%E8%BE%9E%E8%81%8C%E6%84%9F%E5%8F%97/</url>
+      <content type="html"><![CDATA[<h2 id="自我感受"><a href="#自我感受" class="headerlink" title="自我感受"></a>自我感受</h2><p>刚开始的时候进入方遒，觉得在方遒里前端做项目的感觉，应该是跟在学校里和他人组队完成项目的过程是差不多的性质，我们可以互相讨论问题，相互解决问题，从而完成项目，这也是一个自学过程，而且期间还有实习补贴，所以应该能够适应和得到提升的，但是经过这几天的工作，我发现方遒是没有一位正职的前端开发工程师，带我的那个也是一位应届毕业生，这个让我有点失望</p>
+<p>然后我发现，公司的项目很赶，每当我遇到问题后，并且经过谷歌和百度搜索及个人调试后没找到解决方案，苦思不得其解，正想询问师兄解决方法之时，发现他们也很忙，我也不好继续打扰，耽误他们的开发进度。照这样发展下去项目太干了，自己边没有太多时间去整理思路，便可能会直接上网复制代码，也没有时间去理解其实现思路，更勿论代码可复用性及性能优化</p>
+<p>而此时，佳都公司亦打电话说，他们想要录取我入职，那是一家比较正式大规模的，与公安机关合作的公司，其有自己开发的组件，以及模块化的代码思路(可扩展性和代码复用性)，这是相当不错的公司，于是我便毫不犹豫地转向该公司了。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[jquery事件委托方法]]></title>
       <url>https://leocecilia.github.io/2017/04/13/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些天做了个点赞的效果，那时候没有用到事件委托的方法，想来相比起用事件委托方法，性能锐减，所以现在记录一下jquery中不同的事件绑定，触发，解绑的方法以及用途</p>
@@ -26,7 +60,7 @@
 <h2 id="live"><a href="#live" class="headerlink" title="live()"></a>live()</h2><p><code>live()</code>在jquery1.9以后已被丢弃，但现在仍记录一下其用法，<code>live()</code>与<code>bind()</code>的最大区别<strong>在于<code>live()</code>不仅作用于已经存在的DOM元素，还作用于将来动态生成的元素</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   	$(<span class="string">'.box'</span>).live(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       	$(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container'</span>);        </div><div class="line">   	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>注意<code>live()</code>使用了<strong>事件委托</strong>的方法，但是它有所下几个缺点： </p>
+<p>注意<code>live()</code>使用了<strong>事件委托</strong>的方法，但是它有所下几个缺点：</p>
 <ol>
 <li><code>$()</code>函数会找到当前页面的所有.box元素并创建jquery对象，但在确认事件明白时却不用这个.box元素的组合，而是使用选择符表达式与<code>event.target</code>或其祖先元素进行比较，所以生成jquery对象会导致不必要的开销</li>
 <li><code>live()</code>默认把事件绑定到<code>$(document)</code>元素，如果DOM嵌套很深，事件冒泡通过大量祖先元素会导致性能缺失</li>
@@ -36,7 +70,8 @@
 <h2 id="delegate"><a href="#delegate" class="headerlink" title="delegate()"></a>delegate()</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.container'</span>).delegate(<span class="string">'.box'</span>,<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container:first'</span>);<span class="comment">//若没有涉及到数值的改变，则可以这般写，否则的话，其便会共用一个作用域，</span></div><div class="line">      <span class="comment">//解决方法有两个，一个是创建闭包，另一个是通过绑定一个Id选择器来获取该元素，并进行事件委托</span></div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
 <p><code>delegate()</code>使用了<strong>事件委托</strong>的方法，其根元素是具体绑定的元素，由此看来，使用<code>delegate()</code>要比<code>live()</code>效率更高。</p>
 <p>提示：使用事件委托时，如果注册到目标元素上的其他事件处理程序使用.stopPropagation()阻止了事件传播，那么事件委托就会<strong>失效</strong>。</p>
-<h2 id="on-‘click’-’-box’-function-是比较新的方法"><a href="#on-‘click’-’-box’-function-是比较新的方法" class="headerlink" title="on(‘click’,’.box’,function)是比较新的方法"></a>on(‘click’,’.box’,function)是比较新的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.container'</span>).on(<span class="string">'click'</span>,<span class="string">'.box'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container:first'</span>);<span class="comment">//若没有涉及到数值的改变，则可以这般写，否则的话，其便会共用一个作用域，</span></div><div class="line">      <span class="comment">//解决方法有两个，一个是创建闭包，另一个是通过绑定一个Id选择器来获取该元素，并进行事件委托</span></div><div class="line">   &#125;);</div></pre></td></tr></table></figure>]]></content>
+<h2 id="on-‘click’-’-box’-function-是比较新的方法"><a href="#on-‘click’-’-box’-function-是比较新的方法" class="headerlink" title="on(‘click’,’.box’,function)是比较新的方法"></a>on(‘click’,’.box’,function)是比较新的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.container'</span>).on(<span class="string">'click'</span>,<span class="string">'.box'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="keyword">this</span>).clone().appendTo(<span class="string">'.container:first'</span>);<span class="comment">//若没有涉及到数值的改变，则可以这般写，否则的话，其便会共用一个作用域，</span></div><div class="line">      <span class="comment">//解决方法有两个，一个是创建闭包，另一个是通过绑定一个Id选择器来获取该元素，并进行事件委托</span></div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+]]></content>
     </entry>
     
     <entry>
