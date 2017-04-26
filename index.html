@@ -383,9 +383,23 @@
 </li>
 <li><p>每当刷新页面时，有时候，页面会突闪(抖动)纵向滚动条（出现后立即消失，且内容很少，不足以出现滚动条），先说说解决方法，直接在<code>&lt;body&gt;&lt;/body&gt;</code>上设置<code>overflow: hidden;</code>(只要<strong>不</strong>设高度，overflow:hidden;便不会将超出的内容隐藏掉),便可解决这问题。</p>
 </li>
-<li><p>让文字只在一行当中呈现，不断行，使用<code>class=&quot;text-overflow&quot;</code>(bootstrap的class)，与此同时，该元素需要设置<strong>宽度</strong>，这样便能呈现出该文字便能在一行当中呈现，而超出的部分用<code>...</code>展示</p>
+<li><p>让文字只在一行当中呈现，不断行，使用<code>class=&quot;text-overflow&quot;</code>(bootstrap的class)，与此同时，该元素需要设置<strong>宽度</strong>，这样便能呈现出该文字便能在一行当中呈现，而超出的部分用<code>...</code>展示，为了使该元素做到自适应宽度，还有另外两种更优的方法：</p>
+<ol>
+<li><p>让该元素的<code>display:block;</code>，原因是在正常文本流当中，该元素的宽度是由其祖先元素撑开，(由于checkbox和其右边的文本不在同一水平线)，故将其父级元素设为<code>position: relative;</code>，并将<code>checkbox</code>设为<code>position: absolute;</code>，然后再通过<code>top</code>，<code>left</code>之类的元素调整它的位置</p>
+</li>
+<li><p><code>table</code>的特点是左列固宽，右列自适应<code>table</code>剩余的宽度，故该思路为将其父级元素设为<code>display: table;</code>，该元素及其同级元素设为<code>display: table-cell;</code>，这样亦可完成需求。</p>
+</li>
+</ol>
 </li>
 </ul>
+<hr>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p><strong>2017/4/25</strong><br><br>感觉最近想法不正确，以为直接将对方的代码copy下来，就可以提高开发效率，却没有去思考该代码是否优化，甚至乎，很多时候，在人家冗杂的代码当中纠结许久，浪费自己的时间。而正确的提高写页面效率的思路应当是：</p>
+<blockquote>
+<p>每当看到一个页面，应当<strong>先自己思考</strong>一下该布局如何实现，然后再去参考别人的代码是否已经实现了你的想法，若有，则可直接<strong>复用</strong>，若没有，则需要自己编写！千万要注意，复制糟糕的代码还不如自己编写的代码的开发效率快！</p>
+</blockquote>
+<p>而我自己呢，却只是<strong>一味</strong>地复制粘贴别人的代码，丝毫<strong>没有</strong>去思考！长此以往，你永远都不能建起属于自己的代码库，而你也只会变成一个不会独立思考的人！</p>
+<p><strong>2017/4/26</strong><br><br>今天在地铁上思考了一下接下来的计划，首先在公司里，若没有什么任务的时候便可以刷leetcode，然后晚上便在宿舍进行当天的工作总结，随后开始看算法书籍，然后做算法题，可将做题的内容放在github上进行版本管理，这样可以看到你解题思路的历程。</p>
+<p>然后，今天在公司里没什么任务，于是我便刷起了leetcode，每每做完一道题，且当其呈现为<strong>绿色</strong>的Accepted的时候，我便感觉有一种自豪感驱使我继续闯关答题，嗯，所以我更要执行我的计划，让自己成为一个更加强的人。</p>
 
           
         
