@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title><![CDATA[线上部署heroku]]></title>
+      <url>https://leocecilia.github.io/2017/05/16/online-deploy-heroku/</url>
+      <content type="html"><![CDATA[<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>将<a href="https://github.com/alsotang/node-lessons/tree/master/lesson3" target="_blank" rel="external">爬虫</a>部署上heroku，成为一个线上项目，<br>我部署的在<a href="https://radiant-brushlands-35859.herokuapp.com/" target="_blank" rel="external">这里</a></p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>学习heroku的线上部署<a href="https://www.heroku.com/" target="_blank" rel="external">heroku</a></p>
+<h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><p>heroku可以让你只专注与页面逻辑，而不需配置服务器和装载数据库，大大地提高开发效率。</p>
+<p>好了，我们先git clone <a href="https://github.com/alsotang/node-lessons/tree/master/lesson3" target="_blank" rel="external">https://github.com/alsotang/node-lessons/tree/master/lesson3</a>，然后注意每一个nodejs都需要有一个package.json去表明自己的身份（nodejs程序），这样可以让heroku知道你哪一个程序是nodejs主程序。<code>package.json</code>可通过<code>npm init</code>添加，至于里面的<code>git repository</code>则需要填写<code>heroku remote -v</code>里得出的值</p>
+<p>首先先去<a href="https://www.heroku.com/" target="_blank" rel="external">注册</a>，然后去<a href="https://toolbelt.heroku.com/" target="_blank" rel="external">下载</a>，再在命令行通过<code>heroku login</code>登录，<strong>注意这里的邮箱填写最好是填写你github登录的邮箱</strong>。</p>
+<p>然后要<code>git add .</code>添加文件，或者也可只添加一个，详细命令请上网查询，然后<code>git commit -m &quot;first commit&quot;</code>，<strong>-m后面是双引号</strong>，最后<code>git push heroku master</code>，然后window会弹出一个登录窗口，注意这里的用户名和密码请参见<code>C:\user\user\netrc</code>文件，可用记事本打开查看，然后输入git的账号密码，然后即可push成功啦，注意若出现<code>Failed to detect app matching https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/nodejs.tgz buildpack</code>，说明heroku它无法识别你的nodejs程序，这时候需要添加package.json文件，如上所述。<code>git add package.json</code>，<code>git commit -m &quot;track package.json&quot;</code>，这样我们heroku的部署便算成功。</p>
+<p>最后输入<code>heroku open</code>后，浏览器便会自动打开，并能访问到部署到heroku的线上应用啦。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[company-html's trick]]></title>
       <url>https://leocecilia.github.io/2017/04/17/%E5%85%AC%E5%8F%B8%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</url>
       <content type="html"><![CDATA[<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
@@ -59,7 +72,7 @@
 <p>而我自己呢，却只是<strong>一味</strong>地复制粘贴别人的代码，丝毫<strong>没有</strong>去思考！长此以往，你永远都不能建起属于自己的代码库，而你也只会变成一个不会独立思考的人！</p>
 <h2 id="2017-4-26"><a href="#2017-4-26" class="headerlink" title="2017/4/26"></a>2017/4/26</h2><p>今天在地铁上思考了一下接下来的计划，首先在公司里，若没有什么任务的时候便可以刷leetcode，然后晚上便在宿舍进行当天的工作总结，随后开始看算法书籍，然后做算法题，可将做题的内容放在github上进行版本管理，这样可以看到你解题思路的历程。</p>
 <p>然后，今天在公司里没什么任务，于是我便刷起了leetcode，每每做完一道题，且当其呈现为<strong>绿色</strong>的Accepted的时候，我便感觉有一种自豪感驱使我继续闯关答题，嗯，所以我更要执行我的计划，让自己成为一个更加强的人。</p>
-<h2 id="2017-5-3"><a href="#2017-5-3" class="headerlink" title="2017/5/3"></a>2017/5/3</h2><p>最近将自己的整块时间碎片化，每当复习算法的时候，就像着要不要做做前端的项目啊，然后又开始谷歌搜索前端项目。然后搜到一些很不错的项目之后，就添加为标签，然后继续浏览其他页面，至于之前积聚的项目却都不予以理会。我忽然想起了先前在公众号看到的一篇文章：</p>
+<h2 id="2017-5-3"><a href="#2017-5-3" class="headerlink" title="2017/5/3"></a>2017/5/3</h2><p>最近总是将自己的整块时间碎片化，每当复习算法的时候，就想着要不要做做前端的项目啊，然后又开始谷歌搜索前端项目。然后搜到一些很不错的项目之后，就添加为标签，然后继续浏览其他页面，至于之前积聚的项目却都不予以理会。我忽然想起了先前在公众号看到的一篇文章：</p>
 <blockquote>
 <p>在看书的事情上，很多人都会在微信上列出自己的一大堆书单，可是你又真正看了几本书呢？</p>
 </blockquote>
@@ -82,6 +95,7 @@
 <p>linux思维和window思维，用window的人大多希望有现成的代码，让自己直接套用，而用linux的人则不同，他们很有Geek精神，当没有现成的代码库的时候，他们便自己去编写个性化的代码库，乐于分享，开源，尊重他人的劳动成果。</p>
 </blockquote>
 <p>嗯，看来我得学习<strong>linux</strong>，这是对我Geek精神的培养。</p>
+<h2 id="2017-5-11"><a href="#2017-5-11" class="headerlink" title="2017/5/11"></a>2017/5/11</h2><p>最近发现自己很容易就跳进自己所挖的坑，比如说刚开始的时候，容易</p>
 ]]></content>
     </entry>
     

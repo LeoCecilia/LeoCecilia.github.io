@@ -271,6 +271,131 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/05/16/online-deploy-heroku/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="vivian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/vivian.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="vivian blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/16/online-deploy-heroku/" itemprop="url">
+                  线上部署heroku
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-16T14:19:03+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>将<a href="https://github.com/alsotang/node-lessons/tree/master/lesson3" target="_blank" rel="external">爬虫</a>部署上heroku，成为一个线上项目，<br>我部署的在<a href="https://radiant-brushlands-35859.herokuapp.com/" target="_blank" rel="external">这里</a></p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>学习heroku的线上部署<a href="https://www.heroku.com/" target="_blank" rel="external">heroku</a></p>
+<h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><p>heroku可以让你只专注与页面逻辑，而不需配置服务器和装载数据库，大大地提高开发效率。</p>
+<p>好了，我们先git clone <a href="https://github.com/alsotang/node-lessons/tree/master/lesson3" target="_blank" rel="external">https://github.com/alsotang/node-lessons/tree/master/lesson3</a>，然后注意每一个nodejs都需要有一个package.json去表明自己的身份（nodejs程序），这样可以让heroku知道你哪一个程序是nodejs主程序。<code>package.json</code>可通过<code>npm init</code>添加，至于里面的<code>git repository</code>则需要填写<code>heroku remote -v</code>里得出的值</p>
+<p>首先先去<a href="https://www.heroku.com/" target="_blank" rel="external">注册</a>，然后去<a href="https://toolbelt.heroku.com/" target="_blank" rel="external">下载</a>，再在命令行通过<code>heroku login</code>登录，<strong>注意这里的邮箱填写最好是填写你github登录的邮箱</strong>。</p>
+<p>然后要<code>git add .</code>添加文件，或者也可只添加一个，详细命令请上网查询，然后<code>git commit -m &quot;first commit&quot;</code>，<strong>-m后面是双引号</strong>，最后<code>git push heroku master</code>，然后window会弹出一个登录窗口，注意这里的用户名和密码请参见<code>C:\user\user\netrc</code>文件，可用记事本打开查看，然后输入git的账号密码，然后即可push成功啦，注意若出现<code>Failed to detect app matching https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/nodejs.tgz buildpack</code>，说明heroku它无法识别你的nodejs程序，这时候需要添加package.json文件，如上所述。<code>git add package.json</code>，<code>git commit -m &quot;track package.json&quot;</code>，这样我们heroku的部署便算成功。</p>
+<p>最后输入<code>heroku open</code>后，浏览器便会自动打开，并能访问到部署到heroku的线上应用啦。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/04/17/公司代码规范/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -404,7 +529,7 @@
 <p>而我自己呢，却只是<strong>一味</strong>地复制粘贴别人的代码，丝毫<strong>没有</strong>去思考！长此以往，你永远都不能建起属于自己的代码库，而你也只会变成一个不会独立思考的人！</p>
 <h2 id="2017-4-26"><a href="#2017-4-26" class="headerlink" title="2017/4/26"></a>2017/4/26</h2><p>今天在地铁上思考了一下接下来的计划，首先在公司里，若没有什么任务的时候便可以刷leetcode，然后晚上便在宿舍进行当天的工作总结，随后开始看算法书籍，然后做算法题，可将做题的内容放在github上进行版本管理，这样可以看到你解题思路的历程。</p>
 <p>然后，今天在公司里没什么任务，于是我便刷起了leetcode，每每做完一道题，且当其呈现为<strong>绿色</strong>的Accepted的时候，我便感觉有一种自豪感驱使我继续闯关答题，嗯，所以我更要执行我的计划，让自己成为一个更加强的人。</p>
-<h2 id="2017-5-3"><a href="#2017-5-3" class="headerlink" title="2017/5/3"></a>2017/5/3</h2><p>最近将自己的整块时间碎片化，每当复习算法的时候，就像着要不要做做前端的项目啊，然后又开始谷歌搜索前端项目。然后搜到一些很不错的项目之后，就添加为标签，然后继续浏览其他页面，至于之前积聚的项目却都不予以理会。我忽然想起了先前在公众号看到的一篇文章：</p>
+<h2 id="2017-5-3"><a href="#2017-5-3" class="headerlink" title="2017/5/3"></a>2017/5/3</h2><p>最近总是将自己的整块时间碎片化，每当复习算法的时候，就想着要不要做做前端的项目啊，然后又开始谷歌搜索前端项目。然后搜到一些很不错的项目之后，就添加为标签，然后继续浏览其他页面，至于之前积聚的项目却都不予以理会。我忽然想起了先前在公众号看到的一篇文章：</p>
 <blockquote>
 <p>在看书的事情上，很多人都会在微信上列出自己的一大堆书单，可是你又真正看了几本书呢？</p>
 </blockquote>
@@ -427,6 +552,7 @@
 <p>linux思维和window思维，用window的人大多希望有现成的代码，让自己直接套用，而用linux的人则不同，他们很有Geek精神，当没有现成的代码库的时候，他们便自己去编写个性化的代码库，乐于分享，开源，尊重他人的劳动成果。</p>
 </blockquote>
 <p>嗯，看来我得学习<strong>linux</strong>，这是对我Geek精神的培养。</p>
+<h2 id="2017-5-11"><a href="#2017-5-11" class="headerlink" title="2017/5/11"></a>2017/5/11</h2><p>最近发现自己很容易就跳进自己所挖的坑，比如说刚开始的时候，容易</p>
 
           
         
@@ -1561,155 +1687,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/03/18/3dtagCloud/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="vivian">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/uploads/vivian.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="vivian blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/18/3dtagCloud/" itemprop="url">
-                  3dtagCloud
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-18T20:13:14+08:00">
-                2017-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近准备要找实习了，然后就想着要做个漂漂亮亮的简历。想起ife项目中的标签云，于是便准备做一个3d的标签云效果</p>
-<hr>
-<h2 id="总体思路"><a href="#总体思路" class="headerlink" title="总体思路"></a>总体思路</h2><ul>
-<li>为所有标签要随机生成坐标，平均分布在球面上，然后再根据旋转公式，获取旋转后的坐标，然后再进行动画。以下是具体做法</li>
-</ul>
-<h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><ul>
-<li>sinθ与cosθ的值域为[-1,1]（很重要）</li>
-<li>球坐标公式，以坐标原点为中心，半径为R的球面的参数方程为</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">x = r * sinθ * cosΦ;</div><div class="line">y = r * sinθ * sinΦ;  </div><div class="line">z = r * cosθ;</div></pre></td></tr></table></figure>
-<p>  <span id="jump"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Spherical_with_grid.svg/300px-Spherical_with_grid.svg.png" alt="原理"></span><br>资料：<a href="http://baike.baidu.com/item/%E7%90%83%E9%9D%A2?fr=aladdin" target="_blank" rel="external">球坐标公式推导</a></p>
-<ul>
-<li>旋转公式</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">c = cosβ * x - sinβ * y;<span class="comment">//(x,y,z)为旋转前的坐标，(c,d,z1)为旋转后的坐标</span></div><div class="line">d = cosβ * y - sinβ * x;</div></pre></td></tr></table></figure>
-<p><img src="http://pic002.cnblogs.com/img/ywxgod/201008/2010080600581929.jpg" alt="原理"><br>球绕某一轴旋转可以抽象成圆绕圆心旋转!<br>资料：<a href="http://www.cnblogs.com/ywxgod/archive/2010/08/06/1793609.html" target="_blank" rel="external">坐标旋转公式推导</a></p>
-<h2 id="设置坐标"><a href="#设置坐标" class="headerlink" title="设置坐标"></a>设置坐标</h2><p>设置坐标是相对较难的一步，因为我们要将标签平均分布在球面上，藉此，引用一下大神的式子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">θ = arccos(((<span class="number">2</span> * i) - <span class="number">1</span>) / len - <span class="number">1</span>); </div><div class="line">Φ = θ * sqrt(len * π);</div></pre></td></tr></table></figure>
-<p><a href="#jump">如图</a></p>
-<blockquote>
-<p>第一个式子<code>arccos</code>中的<code>(2 * i) - 1) / len - 1</code>实际上是一个在[-1,1]区间中关于0对称的等差数列(因为sinθ,cosθ的值域是[-1,1]),第二个式子中的<code>sqrt(len * π)</code>却不是很懂其中的原理</p>
-</blockquote>
-<p>详细代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; tagLen; i++) &#123;</div><div class="line">        <span class="comment">// 设置随机坐标，平均分布</span></div><div class="line">        <span class="keyword">let</span> a = <span class="built_in">Math</span>.acos((<span class="number">2</span> * (i + <span class="number">1</span>) - <span class="number">1</span>) / tagLen - <span class="number">1</span>), <span class="comment">// θ = arccos(((2*(i+1))-1)/len - 1),基于[-1,1]的关于0对称的等差数列</span></div><div class="line">          b = a * <span class="built_in">Math</span>.sqrt(tagLen * <span class="built_in">Math</span>.PI), <span class="comment">// Φ = θ*sqrt(all * π)，不懂原理</span></div><div class="line">          x = R * <span class="built_in">Math</span>.sin(a) * <span class="built_in">Math</span>.cos(b), <span class="comment">// x轴坐标: x=r*sinθ*cosΦ，详情请参考https://zh.wikipedia.org/wiki/%E7%90%83%E5%BA%A7%E6%A8%99%E7%B3%BB</span></div><div class="line">          y = R * <span class="built_in">Math</span>.sin(a) * <span class="built_in">Math</span>.sin(b), <span class="comment">// y轴坐标: x=r*sinθ*cosΦ</span></div><div class="line">          z = R * <span class="built_in">Math</span>.cos(a), <span class="comment">// z轴坐标: z=r*cosθ</span></div><div class="line">          t = <span class="keyword">new</span> tag(tagEle[i], x, y, z);</div><div class="line"></div><div class="line">        tagEle[i].style.color = <span class="string">'#'</span> + <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">0xffffff</span>).toString(<span class="number">16</span>); <span class="comment">// 设置随机颜色</span></div><div class="line">        tags.push(t);</div><div class="line">        t.move(); <span class="comment">// 初始化位置</span></div><div class="line">      &#125;</div></pre></td></tr></table></figure>
-<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>先前已经说明了思路，现在就直接post上代码吧</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">rotateX</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">let</span> cos = <span class="built_in">Math</span>.cos(angleX),</div><div class="line">        sin = <span class="built_in">Math</span>.sin(angleX);</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;tags.length;i++)&#123;</div><div class="line">      	<span class="keyword">let</span> y = tags[i].y * cos - tags[i].z * sin,</div><div class="line">          z = tags[i].z * cos + tags[i].y * sin;</div><div class="line">        tags[i].y = y;</div><div class="line">        tags[i].z = z;</div><div class="line">      &#125;        </div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
-<p>其中angleX和angleY是旋转角速度的，可按需求设置，<strong>注意</strong> 在单位时间内<code>v=w*r</code>，且旋转360度跟没旋转的效果一样。</p>
-<h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">tag.prototype = &#123;</div><div class="line">      <span class="attr">move</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">let</span> scale = length / (length - <span class="keyword">this</span>.z),</div><div class="line">          alpha = (<span class="keyword">this</span>.z + R) / (<span class="number">2</span> * R),</div><div class="line">          ele = <span class="keyword">this</span>.ele;</div><div class="line">        ele.style.fontSize = <span class="number">15</span> * scale + <span class="string">"px"</span>;</div><div class="line">        ele.style.opacity = alpha + <span class="number">0.5</span>;</div><div class="line">        ele.style.zIndex = <span class="built_in">parseInt</span>(scale * <span class="number">100</span>);</div><div class="line">        <span class="comment">// 原点是 (cloud.offsetWidth/2, cloud.offsetHeight/2)</span></div><div class="line">        ele.style.left = <span class="keyword">this</span>.x + board.offsetWidth / <span class="number">2</span> - ele.offsetWidth / <span class="number">2</span> + <span class="string">"px"</span>;</div><div class="line">        ele.style.top = <span class="keyword">this</span>.y + board.offsetHeight / <span class="number">2</span> - ele.offsetHeight / <span class="number">2</span> + <span class="string">"px"</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
-<p>scale,alpha都是取关于z坐标递增的函数，用于设置<code>font-size</code>，<code>opacity</code>与<code>z-index</code>为了能够更好地形成视觉差(3d效果)，可按需设置！</p>
-<p><a href="https://leocecilia.github.io/resume/">预览</a></p>
-<p>参考链接 <a href="http://www.cnblogs.com/axes/p/3501424.html" target="_blank" rel="external">3dtagCloud</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1757,7 +1734,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1768,7 +1745,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
