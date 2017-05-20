@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title><![CDATA[todoApp]]></title>
+      <url>https://leocecilia.github.io/2017/05/20/todoApp/</url>
+      <content type="html"><![CDATA[<h2 id="todoApp思路"><a href="#todoApp思路" class="headerlink" title="todoApp思路"></a>todoApp思路</h2><p>这个App使用了MVC的设计思想，现在具体说一下三个层的具体实现方式。</p>
+<ul>
+<li><p>view层</p>
+<ul>
+<li>使用了ejs动态模板，可以将后台传来的数据动态地写入html文件，而无须使用js来获取选择器，从而填充，但是本app每次请求成功后，都需要重绘整个页面，这是<strong>硬伤</strong>，学术解释为<blockquote>
+<p>界面设计人员进行图形界面设计。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>controller层</p>
+<ul>
+<li>controller主要功能是进行路由选择，向服务器发出请求之后，给客户端的响应，突然感觉这样功能没有分的很明晰，因为我们使用了express模块，所以不需要额外设置一个server模块和一个route模块。一言以蔽之<blockquote>
+<p>负责转发请求，对请求进行处理</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Model层</p>
+<ul>
+<li>应用的业务逻辑层，主要负责功能的实现，但是此处的功能主要是添加和删除，而恰好http方法中有delete和post方法，可以直接使用，所以这里的app就没有特地设立一个model层。学术解释为<blockquote>
+<p> 程序员编写程序应有的功能（实现算法等等）、数据库专家进行数据管理和数据库设计(可以实现具体的功能)。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>以及模块的导出和导入方式，注意模块不需要将整个文件都设为一个模块(因为模块是一个封装所需功能的能访问并记住其所在词法作用域的代码片段)</p>
+<h2 id="app具体实现"><a href="#app具体实现" class="headerlink" title="app具体实现"></a>app具体实现</h2><h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><p>controller层的主要难点是连接数据库，在mlab中新建完数据库之后，要再新建一个账户和密码，来连接云mongodb。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//text是账户名，第二个text则是密码</span></div><div class="line">mongoose.connect(<span class="string">'mongodb://text:text@ds147681.mlab.com:47681/todolist'</span>);</div><div class="line"></div><div class="line"><span class="comment">//create a Schema,tell the db what properties it should contain</span></div><div class="line"><span class="keyword">var</span> todoSchema = <span class="keyword">new</span> mongoose.Schema(&#123;</div><div class="line">  <span class="attr">item</span>: <span class="built_in">String</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//what schema was base in the model</span></div><div class="line"><span class="keyword">var</span> Todo = mongoose.model(<span class="string">'Todo'</span>,todoSchema);</div></pre></td></tr></table></figure></p>
+<p>然后连接完数据库便就可以对请求进行处理了，主要是向数据库发出查找请求，并执行相对的操作(删除/新增)</p>
+<h3 id="view层"><a href="#view层" class="headerlink" title="view层"></a>view层</h3><p>使用ejs模板，ejs语法&lt;% %&gt;即可嵌入js语法，其和java开发中jsp语法是差不多的，现在想来我公司的代码很多时候都是重绘整个子页面的，感觉性能上就做得不是那么到位</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Nodejs框架归类]]></title>
       <url>https://leocecilia.github.io/2017/05/19/Nodejs%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些天一直在youtube逛nodejs的教程，然后我发现了<a href="https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg" target="_blank" rel="external">ninjas</a>这个教程，里面的视频内容很赞哦，比较全面的介绍了nodejs的内容，从对文件的操作，到express,nodemon,body-parser等框架的应用场景，以及Middleware的概念让我受益匪浅，现在让我粗略总结一下关于nodejs的东西吧</p>
