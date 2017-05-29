@@ -84,12 +84,34 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="前言前些天一直在学习nodejs，现在来总结一下Nodejs该项目中的要点吧
+目录结构
+config - 里面存放着的端口配置信息，以及express-session的一些配置，引申知识：session
+
+lib - 存放着数据库的一些表(定义里面有什么数据结构，诸如User,Comment,post)这些表，还在其中自定义了插件，是根据Id来生成创建时间的
+
+middleware - 存放中间件">
+<meta property="og:type" content="article">
 <meta property="og:title" content="vivian blog">
-<meta property="og:url" content="https://leocecilia.github.io/tags/interview-experience/index.html">
+<meta property="og:url" content="https://leocecilia.github.io/2017/05/25/nodejs项目/index.html">
 <meta property="og:site_name" content="vivian blog">
+<meta property="og:description" content="前言前些天一直在学习nodejs，现在来总结一下Nodejs该项目中的要点吧
+目录结构
+config - 里面存放着的端口配置信息，以及express-session的一些配置，引申知识：session
+
+lib - 存放着数据库的一些表(定义里面有什么数据结构，诸如User,Comment,post)这些表，还在其中自定义了插件，是根据Id来生成创建时间的
+
+middleware - 存放中间件">
+<meta property="og:updated_time" content="2017-05-27T06:41:20.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vivian blog">
+<meta name="twitter:description" content="前言前些天一直在学习nodejs，现在来总结一下Nodejs该项目中的要点吧
+目录结构
+config - 里面存放着的端口配置信息，以及express-session的一些配置，引申知识：session
+
+lib - 存放着数据库的一些表(定义里面有什么数据结构，诸如User,Comment,post)这些表，还在其中自定义了插件，是根据Id来生成创建时间的
+
+middleware - 存放中间件">
 
 
 
@@ -117,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://leocecilia.github.io/tags/interview-experience/"/>
+  <link rel="canonical" href="https://leocecilia.github.io/2017/05/25/nodejs项目/"/>
 
 
 
 
 
-  <title> 标签: interview experience | vivian blog </title>
+  <title>  | vivian blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -144,7 +166,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,46 +281,182 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        interview experience
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://leocecilia.github.io/2017/05/25/nodejs项目/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="vivian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/vivian.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="vivian blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="vivian blog" src="">
+    </span>
+  </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T21:48:34+08:00">
+                2017-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些天一直在学习nodejs，现在来总结一下Nodejs该项目中的要点吧</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li><p>config - 里面存放着的端口配置信息，以及express-session的一些配置，引申知识：<a href="">session</a></p>
+</li>
+<li><p>lib - 存放着数据库的一些表(定义里面有什么数据结构，诸如User,Comment,post)这些表，还在其中自定义了插件，是根据Id来生成创建时间的</p>
+</li>
+<li><p>middleware - 存放中间件(在客户端和服务器端发送请求起作用，本项目是用于检查用户是否登录，并进行后续的处理)</p>
+</li>
+<li><p>models - 存放一些对于表所进行的操作，诸如增删改查</p>
+</li>
+<li><p>public - 用于存放静态文件，比如css文件啊，img之类的</p>
+</li>
+<li><p>routes - 用于存放路由文件，里面主要是调用http方法后进行处理</p>
+</li>
+<li><p>views - 存放一些模板文件</p>
+</li>
+</ul>
+<p>这里遵循了MVC开发模型，model(模型) - view(视图) - controller(控制器routes)</p>
+<h2 id="安装依赖模块"><a href="#安装依赖模块" class="headerlink" title="安装依赖模块"></a>安装依赖模块</h2><ol>
+<li>express: web框架</li>
+<li>express-session: session 中间件</li>
+<li>connect-mongo: 将session存储于mongodb,结合express-session使用</li>
+<li>connect-flash: 页面通知提示的中间件，基于session实现</li>
+<li>ejs: 模板</li>
+<li>express-formidable: 接收表单即文件的上传中间件，基于session实现</li>
+<li>config-lite: 读取配置文件</li>
+<li>marked: markdown 解析</li>
+<li>moment: 时间格式化</li>
+<li>mongolass: mongodb驱动</li>
+<li>object-to-timestamp: 根据ObjectId生成时间戳</li>
+<li>sha1: sha1密码加密</li>
+<li>winston: 日志</li>
+<li>express-winston: 基于winston的用于express的日志中间件</li>
+</ol>
+<h2 id="安装使用mongodb"><a href="#安装使用mongodb" class="headerlink" title="安装使用mongodb"></a>安装使用mongodb</h2><p><a href="http://www.cnblogs.com/lecaf/p/mongodb.html#3566921" target="_blank" rel="external">教程</a><br>推荐使用<a href="https://robomongo.org/" target="_blank" rel="external">robotmongo</a>这个可视化Ui界面</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>顾名思义配置文件则是，定义一些可配置的变量，从而使你的项目可以在不同的环境下运行。</p>
+<h2 id="功能与路由设计"><a href="#功能与路由设计" class="headerlink" title="功能与路由设计"></a>功能与路由设计</h2>
+      
+    </div>
 
-      <h1 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/03/31/interview experience/" itemprop="url">
-              
-                <span itemprop="name">面试经历</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-31T16:54:28+08:00"
-              content="2017-03-31" >
-          03-31
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/20/todoApp/" rel="next" title="todoApp">
+                <i class="fa fa-chevron-left"></i> todoApp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/29/session/" rel="prev" title="session,">
+                session, <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -306,6 +464,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -325,8 +487,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/vivian.jpg"
@@ -413,6 +584,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构"><span class="nav-number">2.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖模块"><span class="nav-number">3.</span> <span class="nav-text">安装依赖模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装使用mongodb"><span class="nav-number">4.</span> <span class="nav-text">安装使用mongodb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">5.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能与路由设计"><span class="nav-number">6.</span> <span class="nav-text">功能与路由设计</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -511,6 +698,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title><![CDATA[session,]]></title>
+      <url>https://leocecilia.github.io/2017/05/29/session/</url>
+      <content type="html"><![CDATA[<h2 id="session是什么"><a href="#session是什么" class="headerlink" title="session是什么"></a>session是什么</h2><p>http是一个无状态协议，所以server和client不会一直保持连线状态，也不会有双方状态的即时更新，所以sever并不知道client的状态（像是是否已经登入），由此引入了session，代表服务器与浏览器的一次会话过程，其被存储在服务器端。</p>
+<h2 id="session的原理"><a href="#session的原理" class="headerlink" title="session的原理"></a>session的原理</h2><p>Session 的机制就像是你去飲料店下了單以後，得到号码牌，然後你走开几步，店員就忘了你是誰。所以，如果你想去取飲料，你就得靠這張號碼牌，去跟店員領，店員會跟據這號碼牌，認定你是顧客、是否點過餐、知道你點了什麼東西，然後可以接著給你屬於你的飲料。<br><br>理解之后，回到http上就是一样，在网络领域中，有两种方法让client取得号码牌，一个是用cookie，另一个是直接输出并嵌入页面当中的方法，即直接把号码背下来。<br>拿号码牌去sever拿资料，亦分为两种方法，cookie和运用标准的query string /post body</p>
+<h2 id="cookie-based-session"><a href="#cookie-based-session" class="headerlink" title="cookie-based session"></a>cookie-based session</h2><p>事实上，在最原始的session设计当中，开发者是将<strong>资料存储在sever，或是usb或数据库当中</strong>，每当顾客来买东西，店员就输入你的号码来得知你是否点过餐。<br>这种方案在小型网站是完全行得通的，只是在现在超大流量的网络服务来看，直接将资料存储在sever，就意味着大容量的数据库，以及存放和共享资料的技术，加之兼顾效能以及方便维护而言，这就是相当大型的问题<br>而cookie-based-session就提出将资料暂时存放在cookie当中，让client自己存放，其原理通常是使用 Query String 或 POST body 等方法，把資料往 Server 傳之後，在 Server 端將 Client 上傳的資料存在 Session 之中，简单地说，</p>
+<blockquote>
+<p>你点什么饮料，统统<strong>直接写在</strong>号码牌上，sever就可以直接看你的号码牌，而无须发大量的是将去建立大规模的server来处理session</p>
+</blockquote>
+<p>只是cookie只有4k容量的限制，所以网站有时候会采用cookie-based-session和服务器端session并行的策略。</p>
+<h2 id="session传值"><a href="#session传值" class="headerlink" title="session传值"></a>session传值</h2><p>利用session机制来储存资料，让不同页面之间可以传递资料。之后的连接或开启其他页面是，因为你拿的号码牌是同一个，所以在不同页面当中，仍然可以读到迁移所储存在session的状态。</p>
+<h2 id="session会在浏览器关闭后消失嘛"><a href="#session会在浏览器关闭后消失嘛" class="headerlink" title="session会在浏览器关闭后消失嘛"></a>session会在浏览器关闭后消失嘛</h2><p>不会的，浏览器关闭后其所创建的sessionid就会随之消失。而seesion只会在其expire到期时，会是直接在服务器端强制清除，才会使session消失。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title></title>
+      <url>https://leocecilia.github.io/2017/05/25/nodejs%E9%A1%B9%E7%9B%AE/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前些天一直在学习nodejs，现在来总结一下Nodejs该项目中的要点吧</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li><p>config - 里面存放着的端口配置信息，以及express-session的一些配置，引申知识：<a href="">session</a></p>
+</li>
+<li><p>lib - 存放着数据库的一些表(定义里面有什么数据结构，诸如User,Comment,post)这些表，还在其中自定义了插件，是根据Id来生成创建时间的</p>
+</li>
+<li><p>middleware - 存放中间件(在客户端和服务器端发送请求起作用，本项目是用于检查用户是否登录，并进行后续的处理)</p>
+</li>
+<li><p>models - 存放一些对于表所进行的操作，诸如增删改查</p>
+</li>
+<li><p>public - 用于存放静态文件，比如css文件啊，img之类的</p>
+</li>
+<li><p>routes - 用于存放路由文件，里面主要是调用http方法后进行处理</p>
+</li>
+<li><p>views - 存放一些模板文件</p>
+</li>
+</ul>
+<p>这里遵循了MVC开发模型，model(模型) - view(视图) - controller(控制器routes)</p>
+<h2 id="安装依赖模块"><a href="#安装依赖模块" class="headerlink" title="安装依赖模块"></a>安装依赖模块</h2><ol>
+<li>express: web框架</li>
+<li>express-session: session 中间件</li>
+<li>connect-mongo: 将session存储于mongodb,结合express-session使用</li>
+<li>connect-flash: 页面通知提示的中间件，基于session实现</li>
+<li>ejs: 模板</li>
+<li>express-formidable: 接收表单即文件的上传中间件，基于session实现</li>
+<li>config-lite: 读取配置文件</li>
+<li>marked: markdown 解析</li>
+<li>moment: 时间格式化</li>
+<li>mongolass: mongodb驱动</li>
+<li>object-to-timestamp: 根据ObjectId生成时间戳</li>
+<li>sha1: sha1密码加密</li>
+<li>winston: 日志</li>
+<li>express-winston: 基于winston的用于express的日志中间件</li>
+</ol>
+<h2 id="安装使用mongodb"><a href="#安装使用mongodb" class="headerlink" title="安装使用mongodb"></a>安装使用mongodb</h2><p><a href="http://www.cnblogs.com/lecaf/p/mongodb.html#3566921" target="_blank" rel="external">教程</a><br>推荐使用<a href="https://robomongo.org/" target="_blank" rel="external">robotmongo</a>这个可视化Ui界面</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>顾名思义配置文件则是，定义一些可配置的变量，从而使你的项目可以在不同的环境下运行。</p>
+<h2 id="功能与路由设计"><a href="#功能与路由设计" class="headerlink" title="功能与路由设计"></a>功能与路由设计</h2>]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[todoApp]]></title>
       <url>https://leocecilia.github.io/2017/05/20/todoApp/</url>
       <content type="html"><![CDATA[<h2 id="todoApp思路"><a href="#todoApp思路" class="headerlink" title="todoApp思路"></a>todoApp思路</h2><p>这个App使用了MVC的设计思想，现在具体说一下三个层的具体实现方式。</p>
